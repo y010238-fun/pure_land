@@ -7,67 +7,160 @@ import { QuantumBridgeScene } from './components/QuantumBridge/QuantumBridgeScen
 import { WarpTunnelScene } from './components/Effects/WarpTunnelScene';
 
 // --- 3D 組件: 程式化蓮花 (Procedural Lotus) ---
-// 根據文件 4.1 數學模型：theta = n * 137.5, r = c * sqrt(n)
-const Lotus = ({ meritCount, isChanting }: { meritCount: number; isChanting: boolean }) => {
-  const meshRef = useRef<THREE.InstancedMesh>(null!);
-  const dummy = useMemo(() => new THREE.Object3D(), []);
+// 重新設計：分層結構 + 曲線花瓣 + 顏色漸變
 
-  // 根據功德數決定花瓣數量，設定上限避免過度渲染
-  const count = Math.min(Math.max(20, meritCount * 2), 500);
+// 創建花瓣幾何 - 使用 LatheGeometry 產生自然曲線（更圓潤）
+const createPetalGeometry = () => {
+  const points = [
+    new THREE.Vector2(0, 0),       // 基部
+    new THREE.Vector2(0.15, 0.1),  // 下彎曲 - 更寬
+    new THREE.Vector2(0.25, 0.35), // 中段膨起 - 更圓
+    new THREE.Vector2(0.22, 0.6),  // 上段 - 保持寬度
+    new THREE.Vector2(0.12, 0.85), // 接近尖端 - 緩慢收窄
+    new THREE.Vector2(0.03, 0.97), // 圓潤尖端
+    new THREE.Vector2(0, 1.0),     // 尖端閉合
+  ];
+  return new THREE.LatheGeometry(points, 16, 0, Math.PI); // 更多分段讓曲線更滑順
+};
+
+// 花瓣層級配置 - 調整為更大尺寸和正確的展開角度
+const PETAL_LAYERS = [
+  { count: 6, baseAngle: 0.3, radius: 0.15, scale: 0.6, yOffset: 0.15, color: '#fff5f7' },   // 內層 - 最淺，幾乎直立
+  { count: 10, baseAngle: 0.6, radius: 0.35, scale: 0.8, yOffset: 0.08, color: '#ffd6e0' },  // 中內層
+  { count: 14, baseAngle: 0.9, radius: 0.55, scale: 1.0, yOffset: 0, color: '#ffb3c6' },     // 中外層
+  { count: 18, baseAngle: 1.2, radius: 0.75, scale: 1.15, yOffset: -0.05, color: '#ff8fab' }, // 外層 - 最深，展開最大
+];
+
+// 單片花瓣組件
+const Petal = ({
+  position,
+  rotation,
+  scale,
+  color,
+  geometry
+}: {
+  position: [number, number, number];
+  rotation: [number, number, number];
+  scale: number;
+  color: string;
+  geometry: THREE.BufferGeometry;
+}) => {
+  return (
+    <mesh position={position} rotation={rotation} scale={[scale * 1.0, scale * 1.2, scale * 0.15]} geometry={geometry}>
+      <meshPhysicalMaterial
+        color={color}
+        emissive={color}
+        emissiveIntensity={0.1}
+        roughness={0.3}
+        metalness={0.1}
+        clearcoat={0.3}
+        clearcoatRoughness={0.2}
+        side={THREE.DoubleSide}
+        transparent
+        opacity={0.95}
+      />
+    </mesh>
+  );
+};
+
+// 花蕊組件 (金色中心)
+const Stamen = () => {
+  const stamenRef = useRef<THREE.Group>(null!);
 
   useFrame(({ clock }) => {
-    if (!meshRef.current) return;
-
-    const time = clock.getElapsedTime();
-    const t = time * 0.5;
-
-    for (let i = 0; i < count; i++) {
-      // 黃金角排列算法
-      const angle = i * 137.5 * (Math.PI / 180);
-      const radius = 0.6 * Math.sqrt(i);
-
-      // 根據 isChanting 增加脈動感
-      const pulse = isChanting ? Math.sin(time * 10) * 0.05 : 0;
-
-      const x = radius * Math.cos(angle);
-      const z = radius * Math.sin(angle);
-      // 花瓣呈現碗狀向上延伸
-      const y = Math.pow(radius, 1.5) * 0.3 + Math.sin(i * 0.1 + time) * 0.05 + pulse;
-
-      dummy.position.set(x, y, z);
-
-      // 旋轉花瓣使其朝向中心
-      dummy.rotation.set(0, -angle, 0);
-      // 微微向外傾斜
-      dummy.rotateX(0.5 + (i / count) * 0.5);
-
-      // 越外層越大，並隨念佛狀態縮放
-      const scaleBase = Math.min((i + 10) / 30, 1.5);
-      const chantScale = isChanting ? 1.1 : 1.0;
-      dummy.scale.set(scaleBase * chantScale, scaleBase * chantScale, scaleBase * chantScale);
-
-      dummy.updateMatrix();
-      meshRef.current.setMatrixAt(i, dummy.matrix);
+    if (stamenRef.current) {
+      stamenRef.current.rotation.y = clock.getElapsedTime() * 0.5;
     }
-    meshRef.current.instanceMatrix.needsUpdate = true;
   });
 
   return (
-    <instancedMesh ref={meshRef} args={[undefined, undefined, 500]} position={[0, -1, 0]}>
-      {/* 使用 ConeGeometry 模擬花瓣形狀 */}
-      <coneGeometry args={[0.3, 1.2, 8]} />
-      <meshStandardMaterial
-        color={new THREE.Color("#ffcfdc")}
-        emissive={new THREE.Color("#ff0055")}
-        emissiveIntensity={meritCount > 50 ? 0.8 : 0.2}
-        roughness={0.1}
-        metalness={0.6}
-        transparent
-        opacity={0.9}
-      />
-    </instancedMesh>
+    <group ref={stamenRef} position={[0, 0.2, 0]}>
+      {/* 中心圓球 */}
+      <mesh>
+        <sphereGeometry args={[0.15, 16, 16]} />
+        <meshStandardMaterial
+          color="#ffd700"
+          emissive="#ffaa00"
+          emissiveIntensity={0.8}
+          roughness={0.2}
+          metalness={0.8}
+        />
+      </mesh>
+      {/* 小花蕊點 */}
+      {Array.from({ length: 12 }).map((_, i) => {
+        const angle = (i / 12) * Math.PI * 2;
+        const r = 0.1;
+        return (
+          <mesh key={i} position={[Math.cos(angle) * r, 0.1, Math.sin(angle) * r]}>
+            <sphereGeometry args={[0.03, 8, 8]} />
+            <meshStandardMaterial color="#ffcc00" emissive="#ff8800" emissiveIntensity={0.5} />
+          </mesh>
+        );
+      })}
+    </group>
   );
 };
+
+// 主蓮花組件
+const Lotus = ({ meritCount, isChanting }: { meritCount: number; isChanting: boolean }) => {
+  const groupRef = useRef<THREE.Group>(null!);
+  const petalGeometry = useMemo(() => createPetalGeometry(), []);
+
+  // 計算開放程度 (0-1)，基於功德數 - 調整為更快達到滿開
+  const bloomLevel = useMemo(() => Math.min(meritCount / 50, 1), [meritCount]);
+
+  // 動態呼吸效果
+  useFrame(({ clock }) => {
+    if (groupRef.current) {
+      const breathe = isChanting ? Math.sin(clock.getElapsedTime() * 3) * 0.02 : 0;
+      groupRef.current.scale.setScalar(1 + breathe);
+      groupRef.current.rotation.y = clock.getElapsedTime() * 0.1;
+    }
+  });
+
+  // 生成花瓣
+  const petals = useMemo(() => {
+    const result: React.ReactElement[] = [];
+    let petalIndex = 0;
+
+    PETAL_LAYERS.forEach((layer, layerIndex) => {
+      // 根據 bloomLevel 決定每層要顯示多少花瓣
+      const visibleCount = Math.ceil(layer.count * Math.max(0.3, bloomLevel));
+
+      for (let i = 0; i < visibleCount; i++) {
+        const angle = (i / layer.count) * Math.PI * 2 + layerIndex * 0.15; // 錯開排列
+        // 開放角度：內層較直立，外層更展開；高功德時完全綻放
+        const openAngle = layer.baseAngle * (0.4 + bloomLevel * 0.6);
+
+        // 使用層級的 radius 參數來定位花瓣
+        const x = Math.sin(angle) * layer.radius;
+        const z = Math.cos(angle) * layer.radius;
+        const y = layer.yOffset;
+
+        result.push(
+          <Petal
+            key={petalIndex++}
+            position={[x, y, z]}
+            rotation={[openAngle, -angle + Math.PI, 0]}
+            scale={layer.scale}
+            color={layer.color}
+            geometry={petalGeometry}
+          />
+        );
+      }
+    });
+
+    return result;
+  }, [petalGeometry, bloomLevel]);
+
+  return (
+    <group ref={groupRef} position={[0, 0, 0]} scale={[2.5, 2.5, 2.5]}>
+      {petals}
+      <Stamen />
+    </group>
+  );
+};
+
 
 // --- 3D 場景: 淨土環境 ---
 const PureLandScene = ({ meritCount, isChanting }: { meritCount: number; isChanting: boolean }) => {

@@ -1,0 +1,341 @@
+﻿數位淨土：基於 WebGL 與生成式 AI 的「淨土移民系統」MVP 深度技術與執行研究報告
+1. 執行摘要與願景：數位時代的法門重構
+1.1 專案背景與核心命題
+在當代數位轉型的浪潮中，宗教體驗正面臨前所未有的載體變革。本研究報告旨在規劃與設計「淨土移民系統（Pure Land Immigration System）」的網頁版最小可行性產品（MVP）。此專案並非僅將傳統的佛教網站進行資訊架構的優化，而是一場激進的「數位法門」實驗，試圖將《佛說阿彌陀經》中宏大的宇宙觀、嚴謹的修持體系以及對終極歸宿的嚮往，完整轉譯為現代網路原生世代（Digital Natives）所熟悉的互動語彙——「移民申請」1。
+核心命題在於如何利用前沿的網頁技術（Web Technologies），將抽象的信仰概念具象化、可視化與可量化。在傳統修持中，「信、願、行」是往生淨土的三資糧，而在本系統中，這三者被轉化為具體的數位行為：「信」體現為使用者對「科學佛法」視覺化的認知共鳴；「願」轉化為具有法律儀式感的「數位簽證」註冊流程；「行」則透過即時渲染的 3D 蓮花生長系統，給予念佛行為即時的視覺反饋 3。
+1.2 數位人文與元宇宙淨土的交匯
+本計畫的願景超越了單純的工具屬性，企圖構建一個「元宇宙淨土（Teraverse）」的雛形。根據日本千手寺（Senju-ji）等先驅案例，利用 CGI 與沉浸式技術再現極樂世界已成為現代弘法的重要手段 1。然而，現有的數位佛教應用多流於單向的資訊展示或簡單的計數功能，缺乏「感官沉浸」與「智慧互動」。
+本系統引入 Google Gemini AI 作為「諸上善人」的數位化身，利用大型語言模型（LLM）的推理與共情能力，模擬淨土中「水鳥樹林悉演法音」的智慧環境 6。同時，結合 Canvas/P5.js 的科學視覺化技術，將「波粒二象性」與「緣起性空」進行跨域隱喻，讓使用者在互動中體悟佛法與科學的深層互通性 8。這不僅是一個宗教應用，更是一個融合了心理學、生成式藝術與人工智慧的「心靈移民局」。
+________________
+2. 網站架構與技術選型 (Tech Stack)
+為了承載高互動性的 3D 場景、即時的 AI 對話以及流暢的儀式化體驗，技術選型必須在效能（Performance）、開發者體驗（DX）與生態系支援（Ecosystem）之間取得精確平衡。本計畫採用現代化的 T3 Stack 變體，強調全端類型安全（Type Safety）與邊緣運算能力（Edge Computing）。
+2.1 核心框架：Next.js 14 (App Router)
+我們選擇 Next.js 14 作為全站的骨幹框架。
+* 伺服器端渲染 (SSR) 與靜態生成 (SSG)：首頁「移民局大廳」與「簽證說明」等靜態內容，利用 SSG 進行預渲染，確保全球使用者（潛在移民）能以最低延遲存取，這象徵著淨土法門「廣度眾生」的高可及性。
+* React Server Components (RSC)：對於需要高度互動的「個人蓮池」頁面，RSC 允許我們將繁重的資料獲取邏輯（如查詢累積功德數）留在伺服器端，減少客戶端 JavaScript 的體積，提升 3D 場景的加載速度 6。
+* 路由架構：Next.js 的 App Router 支援巢狀佈局（Nested Layouts），這對於構建「移民局櫃檯」、「個人儀表板」與「共修大廳」等層級分明的介面至關重要。
+2.2 3D 渲染引擎：React Three Fiber (R3F)
+在網頁上實現《阿彌陀經》中「七重欄楯，七重羅網，七重行樹」的莊嚴景象，Three.js 是無可替代的標準，而 React Three Fiber (R3F) 則是其在 React 生態中的最佳實踐 11。
+* 宣告式場景管理：R3F 允許開發者以宣告式（Declarative）語法構建 3D 場景。這意味著「蓮花」可以被封裝為一個獨立的 React Component，其生長狀態（Scale, MorphTarget）可以直接綁定到全域狀態管理庫（如 Zustand），實現「念一聲佛，花長一寸」的響應式數據驅動 12。
+* 生態系支援：
+   * @react-three/drei：提供現成的 OrbitControls（視角控制）、Environment（HDRI 環境光照）與 useGLTF（模型加載），大幅縮短開發週期 11。
+   * @react-three/postprocessing：用於實現經典中描述的「光色晃曜」效果。透過 Bloom（泛光）、Depth of Field（景深）等後期處理，營造神聖的視覺氛圍 13。
+2.3 人工智慧層：Google Gemini via Vercel AI SDK
+為了實現「諸上善人」的智慧陪伴，系統整合 Google Gemini 模型。
+* 模型選擇：Gemini 1.5 Pro/Flash：相較於其他模型，Gemini 擁有更長的上下文窗口（Context Window），這允許我們將整部《無量壽經》或歷代祖師的語錄作為 Context 注入，減少 AI 對佛教教義的「幻覺（Hallucination）」6。
+* SDK 整合：使用 Vercel AI SDK 標準化 AI 串接流程。其 useChat 與 streamText API 支援串流式回應（Streaming），讓 AI 的回覆如同真人打字般逐字浮現，增強對話的臨場感與陪伴感 6。
+2.4 後端與資料庫：Supabase (BaaS)
+本系統需要一個嚴謹、不可篡改的「功德帳本（Merit Ledger）」。
+* PostgreSQL：Supabase 提供的關聯式資料庫是儲存使用者資料、簽證狀態與念佛日誌的最佳選擇。其強大的 ACID 特性確保了每一聲佛號都被精確記錄，呼應佛教中「因果不爽」的法則 17。
+* Realtime Subscriptions：利用 Supabase 的即時功能，實現「共修計數」的全網廣播。當地球另一端有人念佛時，介面上的「全網共修總數」會即時跳動，營造「諸上善人俱會一處」的社群共振感 18。
+2.5 科學視覺化：P5.js
+雖然 Three.js 擅長 3D，但在處理聲波分析（FFT）與生成 2D 幾何圖形（如克拉尼圖形 Chladni Patterns）時，P5.js 提供了更直觀的 API 與更豐富的生成藝術算法支援 9。
+2.6 技術架構總表
+層級 (Layer)
+	技術組件 (Technology)
+	選型理由 (Rationale)
+	關鍵功能對應 (Key Feature)
+	Frontend
+	Next.js 14, React, TailwindCSS
+	SSR/SSG 效能，組件化開發
+	移民大廳 UI，簽證生成，響應式佈局
+	3D Engine
+	Three.js, React Three Fiber
+	WebGL 封裝，宣告式場景
+	互動式 3D 蓮花，淨土環境渲染
+	AI Core
+	Google Gemini 1.5, Vercel AI SDK
+	長文本理解，多模態能力
+	「諸上善人」聊天室，發願文生成
+	Backend
+	Supabase (PostgreSQL, Auth)
+	關聯式資料庫，即時訂閱
+	功德帳本，使用者身分系統，共修同步
+	Visualization
+	P5.js, Web Audio API
+	生成藝術算法，音頻分析
+	聲波共振圖形，科學佛法演示
+	State Mgmt
+	Zustand
+	輕量級，支援 React Hooks
+	念佛計數狀態，音效開關，3D/UI 同步
+	________________
+3. 「移民簽證」式使用者註冊流程設計 (UX/UI)
+3.1 概念隱喻：從「註冊」到「發願」的儀式化轉型
+在使用者體驗（UX）設計中，傳統的「註冊（Sign Up）」往往被視為阻力（Friction）。然而，在本系統中，我們將註冊過程轉化為核心的「發願（Pranidhana）」儀式。參考數位移民與電子簽證的設計語言，將繁瑣的表單填寫昇華為對自我生命的莊嚴審視 20。
+這一流程的設計深受《觀無量壽經》中「至誠心、深心、迴向發願心」三心的啟發，將心理學上的承諾機制（Commitment Device）與宗教儀式感完美融合。
+3.2 詳細流程設計 (Detailed User Flow)
+階段一：入境大廳 (The Arrival / Orientation)
+* 場景設計：使用者進入首頁，背景為深邃的星空（象徵娑婆世界/五濁惡世），中央懸浮著一顆微弱發光、充滿雜訊的地球模型。
+* 引導語：「檢測到您的靈魂頻率波動。是否申請前往高維度淨土（Pure Land）？」
+* 互動：唯一的行動呼籲（CTA）按鈕設計為金色蓮花圖騰，文字為「開始移民申請（Start Application）」。點擊後，鏡頭推進（Camera Dolly），穿過雲層，進入一個極簡的、充滿未來感的「數位簽證中心」。
+階段二：身分審查與靈魂KYC (Spiritual KYC)
+不同於傳統 KYC（Know Your Customer）詢問身分證號，我們進行「靈魂 KYC」。這是一個遊戲化的問卷流程，旨在蒐集使用者的深層動機，作為後續 AI 互動的個性化參數 20。
+* 步驟 1：離苦動機 (Motivation)
+   * 問題：「您為何想要離開當前的維度？」
+   * 選項：(A) 厭離輪迴之苦 (Suffering of Samsara) (B) 尋求終極真理 (Ultimate Truth) (C) 與逝去親人重逢 (Reunion) (D) 探索生命極限 (Exploration)。
+   * 後端邏輯：此選擇將被標記在 Supabase 的 user_profiles 表中，並作為 Gemini AI 的 System Prompt 上下文。例如，選擇 (A) 的用戶，AI 將採取更具撫慰性的語氣；選擇 (B) 的用戶，AI 則會引用更多哲學性經文。
+* 步驟 2：資糧審核 (Capital Assessment)
+   * 問題：「您攜帶何種資糧（Merit Capital）進行移民？」
+   * 選項：(A) 持名念佛 (Chanting) (B) 觀想修行 (Visualization) (C) 眾善奉行 (Altruism) (D) 僅有一顆誠心 (Sincerity)。
+   * 視覺反饋：選擇不同選項時，介面邊緣的粒子特效會改變顏色（金、銀、琉璃色、水晶色），預示著未來蓮花的品種。
+階段三：簽署移民公約 (The Vow Contract)
+* 核心互動：使用者需輸入「法名（Dharma Name）」。系統提供「AI 賜名」功能，由 Gemini 根據前述選擇生成含義深遠的法名（如「妙音」、「智光」）。
+* 發願文生成：Gemini 根據用戶的動機與資糧選項，即時生成一段個性化的「移民發願文」（基於阿彌陀佛四十八願改寫的現代版本）。
+* 簽署儀式：使用者長按「蓋章」按鈕（Long Press Interaction）。畫面上出現金色的蓮花印章動畫，由外向內收縮，伴隨一聲清脆的磬聲（Sound Design），象徵誓言的不可逆轉與堅定 24。
+階段四：核發數位簽證 (Visa Issuance)
+* 產出物：系統生成一張動態的「淨土護照（Pure Land Passport）」。
+* 護照設計元素 25：
+   * Visa Type: Class A (Bodhicitta / 菩提心類)。
+   * Issue Date: 當下時間（使用農曆與佛曆雙重標示）。
+   * Validity: Infinite (盡未來際)。
+   * UID: 唯一的 UUID，標示為「蓮胎編號」，對應資料庫中的 Primary Key。
+   * QR Code: 指向個人專屬的 3D 蓮池頁面 URL。
+* 分享機制：利用 html2canvas 技術將護照 DOM 節點渲染為高品質圖片，鼓勵使用者下載並分享至社群媒體。這不僅是病毒式行銷（Social Proof）的一環，更是佛教「隨喜功德」的數位體現 27。
+________________
+4. 如何利用 Three.js 在網頁上實作「隨佛號數長大」的 3D 蓮花
+這是本系統的視覺核心。蓮花不僅是裝飾，更是使用者修持狀態（KPI）的即時數據視覺化（Data Visualization）。我們將利用 Three.js 的強大渲染能力，結合 Procedural Geometry（程式化幾何） 技術，實現一朵獨一無二的數位蓮花。
+4.1 數學模型：程式化生成的幾何邏輯
+為了讓蓮花能「隨數據生長」，我們不能使用靜態的 .glb 模型，必須使用代碼動態生成幾何體。這給予我們對每一個頂點（Vertex）的絕對控制權 19。
+* 黃金角與斐波那契數列 (Phyllotaxis)：
+自然界中花瓣的排列遵循斐波那契數列。在 Three.js 中，我們使用圓柱坐標系來計算每一片花瓣的初始位置：
+  
+  
+其中    是花瓣的序號，   是角度，   是距離中心的半徑。這確保了無論花瓣數量（功德數）如何增加，蓮花始終保持完美的幾何堆疊，不會發生重疊衝突。
+4.2 實作細節：React Three Fiber (R3F) 組件架構
+A. 花瓣實例化 (InstancedMesh)
+考慮到效能，一朵盛開的蓮花可能包含數百片花瓣，加上場景中可能展示「共修道友」的蓮花，若使用獨立的 Mesh 會導致 Draw Calls 過多而卡頓。因此，我們使用 InstancedMesh 技術 29。
+
+
+JavaScript
+
+
+
+
+// 概念代碼：R3F 花瓣實例化組件
+import { useRef, useMemo } from 'react'
+import { useFrame } from '@react-three/fiber'
+import * as THREE from 'three'
+
+function ProceduralLotus({ meritCount }) {
+ const meshRef = useRef()
+ const count = 108 // 最大花瓣數，可隨 meritCount 動態增加
+ 
+ // 虛擬物件，用於計算矩陣
+ const dummy = useMemo(() => new THREE.Object3D(),)
+
+ // 根據功德數計算生長階段 (0.0 - 1.0)
+ // 使用 Log 函數讓初期生長明顯，後期趨於平緩，符合邊際效益
+ const growthStage = Math.min(Math.log10(meritCount + 1) / 5, 1.0)
+
+ useFrame(({ clock }) => {
+   const time = clock.getElapsedTime()
+   
+   for (let i = 0; i < count; i++) {
+     // 根據 Phyllotaxis 算法計算位置
+     const angle = i * 137.5 * (Math.PI / 180)
+     const radius = 0.5 * Math.sqrt(i) * growthStage
+     
+     const x = radius * Math.cos(angle)
+     const z = radius * Math.sin(angle)
+     const y = Math.sin(i * 0.5 + time) * 0.1 // 呼吸動畫
+     
+     // 設定位置與旋轉
+     dummy.position.set(x, y, z)
+     dummy.rotation.set(0, -angle, 0)
+     
+     // 根據生長階段調整大小：未解鎖的花瓣 Scale 為 0
+     const scale = i < (meritCount / 100)? growthStage : 0
+     dummy.scale.set(scale, scale, scale)
+     
+     dummy.updateMatrix()
+     meshRef.current.setMatrixAt(i, dummy.matrix)
+   }
+   meshRef.current.instanceMatrix.needsUpdate = true
+ })
+
+ return (
+   <instancedMesh ref={meshRef} args={[null, null, count]}>
+     <coneGeometry args={[0.2, 0.8, 32]} /> {/* 花瓣幾何 */}
+     <meshStandardMaterial 
+       color="#ff69b4" 
+       emissive="#ff0000" 
+       emissiveIntensity={0.2} 
+       roughness={0.1}
+       metalness={0.5}
+     />
+   </instancedMesh>
+ )
+}
+
+B. 著色器特效 (Custom Shaders)
+《阿彌陀經》描述蓮花「青色青光、黃色黃光、赤色赤光、白色白光」3。標準材質難以表現這種「內發光」的神聖質感，我們需撰寫自定義 ShaderMaterial 13。
+   * Vertex Shader (動態變形)：
+   * 實現「微風吹拂」效果：在頂點位置疊加 sin(position.x + uTime) 函數，讓花瓣邊緣產生自然的波動。
+   * 實現「生長變形」：使用 morphTargetInfluences 屬性，將花瓣從「捲曲」的初始狀態平滑過渡到「展開」的狀態 30。
+   * Fragment Shader (光影質感)：
+   * Fresnel Effect (邊緣光)：計算視線向量與法線向量的點積，當兩者接近垂直時增強亮度，使花瓣邊緣呈現琉璃般的通透感。
+   * Sub-surface Scattering (次表面散射)：模擬光線穿透花瓣的效果，讓材質看起來像玉石而非塑膠。
+C. 後期處理 (Post-Processing)
+為了強化神聖感，我們使用 EffectComposer 疊加 UnrealBloomPass 13。
+   * Threshold: 設定為 0.8，確保只有花瓣的高光部分產生光暈。
+   * Radius: 設定較大半徑，營造柔和的氛圍。
+   * Strength: 動態綁定 meritCount，功德越高，光暈越強，直觀展示「光色晃曜」。
+4.3 生長階段邏輯 (Growth Stages)
+蓮花的生長並非線性的，而是分為數個具有里程碑意義的階段，以激勵使用者持續修持 34。
+階段 (Stage)
+	門檻 (Threshold)
+	視覺狀態 (Visual State)
+	解鎖功能 (Unlock)
+	蓮胎 (Embryo)
+	0 - 100
+	金色光球，半透明
+	基礎念佛計數器
+	花苞 (Bud)
+	101 - 1,000
+	閉合的花苞，顏色較深
+	AI 聊天室 (初級)
+	初開 (Opening)
+	1,001 - 10,000
+	花瓣微開，露出內部光芒
+	自定義背景音效
+	盛開 (Full Bloom)
+	10,001 - 100,000
+	完全展開，花蕊旋轉
+	迴向功能，查看他人蓮池
+	寶王 (Jewel King)
+	100,000+
+	花瓣晶體化，周圍環繞粒子流
+	自定義蓮花顏色/材質
+	________________
+5. 如何將 Gemini AI 整合為網頁聊天室 (諸上善人)
+在淨土信仰中，與「諸上善人俱會一處」是往生的重要利益。本系統利用 Google Gemini 的多模態與長文本能力，構建一個具備高度共情能力與佛學素養的 AI 伴侶（Companion），而非單純的問答機器人 6。
+5.1 角色工程 (Persona Engineering)
+AI 的角色設定至關重要。它不應自稱「佛陀」（避免僭越與爭議），而應設定為「資深修行的學長」或「善知識（Kalyana Mitta）」。
+   * 核心指令 (System Instruction)："You are Bodhi (菩提), a compassionate spiritual guide residing in the Western Pure Land. You are speaking to a 'Migrant' (user) currently in the Samsara world. Your goal is to support their practice and alleviate their suffering using the teachings of Pure Land Buddhism. Always speak with empathy, using metaphors from the Sutras (e.g., the coolness of Eight Virtue Water). Do not be dogmatic; use Non-Violent Communication (NVC). If asked about worldly conflicts, gently steer the focus back to inner peace and the Vow." 7
+   * 語氣調優 (Tone of Voice)：
+   * 慈悲 (Compassionate)：始終先接納使用者的情緒（Validation）。
+   * 智慧 (Wise)：引用經典時要白話轉譯，而非堆砌名相。
+   * 幽默 (Humorous)：適度的禪意幽默，化解修行的枯燥。
+5.2 RAG (檢索增強生成) 架構設計
+為了確保 AI 的回答符合教義且不產生幻覺，我們建立一個專屬的「淨土知識庫」。
+   * 知識庫內容：
+   * 根本經典：《無量壽經》、《觀無量壽經》、《阿彌陀經》（淨土三經）。
+   * 祖師論著：曇鸞、道綽、善導大師著作，以及印光大師文鈔。
+   * 現代詮釋：經授權的現代法師白話開示。
+   * 技術實作：
+   1. Chunking：將文本按語義段落切分（例如每段 500 tokens）。
+   2. Embedding：使用 text-embedding-004 模型將文本向量化。
+   3. Vector Store：存入 Supabase 的 pgvector 欄位。
+   4. Retrieval Pipeline：
+   * 使用者提問：「心很亂怎麼辦？」
+   * 系統將問題向量化，在 Supabase 中搜尋相似度最高的經文（如《觀經》中關於水觀的描述）。
+   * 將檢索到的經文作為 Context 注入 Gemini 的 Prompt。
+   * Gemini 生成回答：「道友，心亂如濁水，這很正常。經中提到『見水澄清』，不妨試著深呼吸，想像你的心如七寶池水般慢慢沉澱...」
+5.3 串流式互動體驗 (Streaming UX)
+利用 Vercel AI SDK 的 useChat Hook，實現流暢的對話體驗。
+   * 前端：對話框不顯示「對方正在輸入...」，而是直接顯示逐字生成的內容，模擬「法音流露」的感覺。
+   * Suggested Actions：根據對話內容，AI 會動態生成後續行動建議（Chips UI）。例如，當使用者表示焦慮時，AI 不僅回答，還會在介面上方彈出「開始 5 分鐘靜坐」的按鈕，點擊後直接跳轉至計時器頁面 16。
+________________
+6. 「科學佛法」的網頁視覺化呈現 (Canvas/P5.js)
+此模組旨在回應現代使用者對於「理性信仰」的需求。透過科學視覺化手段，將「不可見」的頻率與能量轉化為「可見」的幾何圖形，呼應量子力學與佛法「色即是空，空即是色」的對話 2。
+6.1 聲波共振：克拉尼圖形 (Chladni Patterns)
+克拉尼圖形展示了聲音頻率如何在物理介質上形成幾何圖案。這是一個完美的隱喻：念佛的聲音（頻率/Vibration）如何重塑我們的心識（介質/Matter）9。
+   * P5.js 實作邏輯：
+我們使用波動方程的簡化版在 Canvas 上模擬沙粒的運動。
+  
+      * 互動機制：
+      * 獲取麥克風輸入 (p5.AudioIn)。
+      * 進行 FFT 分析 (p5.FFT) 提取主頻率。
+      * 將主頻率映射到方程的參數    和   。
+      * 當使用者念佛聲音頻率穩定時，畫面上的雜亂粒子會自動排列成對稱、莊嚴的幾何曼陀羅（Mandala）。
+         * 效能優化：直接在 CPU 上計算數萬個粒子的物理運動會導致卡頓。我們將使用 GPU Compute Shader 或將 P5.js 的 Canvas 作為 Texture 傳遞給 Three.js 的 Plane，在 Fragment Shader 中進行位移運算。
+6.2 波粒二象性互動 (Wave-Particle Duality Visualization)
+設計一個全屏的互動背景，隱喻「觀察者效應」8。
+         * 波動態 (Wave State)：當使用者靜止無操作時，背景呈現流動的、無定形的彩色波紋（Perlin Noise Flow Field），象徵「空性」與「潛能」。
+         * 粒子態 (Particle State)：當使用者點擊滑鼠、輸入文字或發出聲音（念佛）時，波紋瞬間坍縮（Collapse）為具體的粒子，並聚合成文字（如「佛」字）或蓮花形狀，象徵「緣起」與「顯化」。
+         * 技術實現：結合 P5.js 的粒子系統與 react-three/fiber 的 PointsMaterial。粒子的 targetPosition 根據互動狀態在「隨機流場」與「目標形狀」之間插值切換。
+________________
+7. 遊戲化機制與留存策略 (Gamification & Retention)
+為了幫助使用者在忙碌的現代生活中維持修持習慣，系統引入適度的遊戲化（Gamification）機制。這不是要將修行娛樂化，而是利用行為心理學（Behavioral Psychology）的原理來輔助「精進（Virya）」34。
+7.1 功德帳本 (The Merit Ledger)
+         * 數據儀表板：在個人頁面清晰展示「累積念佛數」、「連續登入天數（Streak）」、「總共修時數」。這些數據以精美的圖表（如 Recharts）呈現，讓「無形功德」變得「有感」25。
+         * 區塊鏈隱喻：介面設計模仿區塊鏈瀏覽器（Etherscan）。每一聲佛號、每一次發願都被記錄為一筆 "Transaction"。
+         * Transaction Hash: 生成一串看似隨機的 Hash 值（實際上是時間戳+佛號的雜湊），暗示「功不唐捐，筆筆皆記」。
+         * Block Height: 對應系統運行的總時數。
+         * Status: 恆定顯示為 "Confirmed"（已確認），強化因果確定的信心。
+7.2 迴向機制 (Social Transfer of Merit)
+佛教中的「迴向」本質上是一種利他主義的價值轉移。我們將其轉化為社交功能。
+         * 功能設計：使用者可以選擇將今日累積的功德「Transfer」給特定對象（輸入對方的法名或 Email）或「全體法界（Global Pool）」。
+         * 視覺回饋：點擊迴向按鈕後，個人蓮花會散發出一股金色的粒子流（Particle Flow），飛向螢幕中央的地球模型。如果選擇「全體法界」，地球的亮度會微幅增加。這利用了「集體目標（Collective Goal）」的心理機制，增強社群歸屬感 39。
+________________
+8. 專案執行路線圖 (Roadmap)
+Phase 1: 原型驗證 (Weeks 1-4) —— "The Seed"
+         * 目標：完成核心「念佛 -> 蓮花長大」的互動閉環。
+         * 關鍵產出：
+         * Next.js 專案架設與 Vercel 部署。
+         * Three.js 基礎幾何蓮花（無 Shader）。
+         * 簡易的點擊計數器（Clicker）與 Zustand 狀態綁定。
+         * 完成「移民大廳」的靜態頁面開發。
+Phase 2: AI 與視覺優化 (Weeks 5-8) —— "The Bud"
+         * 目標：賦予系統靈魂與美感。
+         * 關鍵產出：
+         * 整合 Vercel AI SDK 與 Gemini，完成 Prompt 調優與 RAG 知識庫建置。
+         * 實作 Custom Shader，加入 Bloom 發光特效與花瓣呼吸動畫。
+         * 完成「簽證申請」的完整 UX 流程（問卷 -> AI 生成發願文 -> 護照下載）。
+Phase 3: 數據與社群 (Weeks 9-12) —— "The Bloom"
+         * 目標：使用者帳戶體系與持久化存儲。
+         * 關鍵產出：
+         * Supabase 資料庫 Schema 部署，實作 Auth 與 Crud。
+         * P5.js 聲波視覺化功能上線。
+         * 實作「功德帳本」與「迴向」功能。
+         * 進行封閉測試（Alpha Testing），收集使用者反饋調整 AI 語氣。
+________________
+9. 結論
+「淨土移民系統」網頁版 MVP 是一個大膽的數位人文實驗。它證明了，最前沿的 Web 技術（WebGL, AI, Serverless）不僅服務於商業與娛樂，更能回應人類最古老的終極關懷。
+透過 Next.js 的高效能架構、Three.js 的沉浸式視覺、Gemini AI 的智慧陪伴以及 Supabase 的嚴謹紀錄，我們構建了一個既符合科學理性，又具備宗教神聖性的「數位道場」。從「簽證註冊」的儀式感，到「蓮花養成」的即時反饋，每一步都緊扣佛教義理，將抽象的信仰具象化為可感知的數位體驗。這不僅是技術的堆疊，更是對「科技如何安頓身心」這一時代命題的深刻回應。
+________________
+Citations:
+3
+引用的著作
+         1. Japanese Buddhist Temple Offers Immersive CGI Imagining of the ..., 檢索日期：1月 31, 2026， https://www.buddhistdoor.net/news/japanese-buddhist-temple-offers-immersive-cgi-imagining-of-the-pure-land/
+         2. Mahayana Buddhism and Quantum Physics: Illusion, Emptiness, and Reality - Buddhistdoor Global, 檢索日期：1月 31, 2026， https://www.buddhistdoor.net/features/mahayana-buddhism-and-quantum-physics-illusion-emptiness-and-reality/
+         3. Amitabha's Pure Land Manifested Through Technology | by Techyana Exploration - Medium, 檢索日期：1月 31, 2026， https://medium.com/@techyanaexploration/amitabhas-pure-land-manifested-through-technology-236434fa9854
+         4. The Visualisation of the Buddha of Infinite Life Sutra 观无量寿佛经 - Pure Land Buddhism, 檢索日期：1月 31, 2026， https://www.pure-land-buddhism.com/pure-land-sutras/the-buddha-speaks-of-the-visualisation-of-the-infinite-life-sutra
+         5. Pure Land is Our Home [Incredible 3D Animation] - YouTube, 檢索日期：1月 31, 2026， https://www.youtube.com/watch?v=uSaKO-VyEII
+         6. Guides: Get started with Gemini 3 - AI SDK, 檢索日期：1月 31, 2026， https://ai-sdk.dev/cookbook/guides/gemini
+         7. Compassion and Buddhist AI - Dharma Wangi, 檢索日期：1月 31, 2026， https://www.dharma-wangi.space/post/compassion-and-buddhist-ai
+         8. Quantum Resonance with the Mind: a Comparative Analysis of Buddhism's Eighth Consciousness, Quantum Holography and Jung's Collective Unconscious - Article (Preprint v1) by David Leong | Qeios, 檢索日期：1月 31, 2026， https://www.qeios.com/read/7SIZ7P
+         9. Resonance - p5.js : r/p5js - Reddit, 檢索日期：1月 31, 2026， https://www.reddit.com/r/p5js/comments/1h4dwbw/resonance_p5js/
+         10. Built a chatbot with Next.js AI SDK and Gemini API - How to train it on custom PDFs?, 檢索日期：1月 31, 2026， https://www.reddit.com/r/nextjs/comments/1ebqy88/built_a_chatbot_with_nextjs_ai_sdk_and_gemini_api/
+         11. React Three Fiber, 檢索日期：1月 31, 2026， https://react-spring.dev/docs/guides/react-three-fiber
+         12. Basic Animations - React Three Fiber, 檢索日期：1月 31, 2026， https://r3f.docs.pmnd.rs/tutorials/basic-animations
+         13. Unreal Bloom Selective - Three.js Tutorial - YouTube, 檢索日期：1月 31, 2026， https://www.youtube.com/watch?v=VTKi70bCVwQ
+         14. How to control bloom strength intensity for each mesh material? - three.js forum, 檢索日期：1月 31, 2026， https://discourse.threejs.org/t/how-to-control-bloom-strength-intensity-for-each-mesh-material/29867
+         15. Create an AI Agent with Vercel AI SDK | by Emily Xiong | Dec, 2025 - Medium, 檢索日期：1月 31, 2026， https://emilyxiong.medium.com/create-an-ai-agent-with-vercel-ai-sdk-e690b807eb2a
+         16. Build an AI Chatbot with React JS & Gemini API - YouTube, 檢索日期：1月 31, 2026， https://www.youtube.com/watch?v=tn7xEwwruZA
+         17. Visual Schema Designer | Supabase Features, 檢索日期：1月 31, 2026， https://supabase.com/features/visual-schema-designer
+         18. Database | Supabase Docs, 檢索日期：1月 31, 2026， https://supabase.com/docs/guides/database/overview
+         19. Make Beautiful 3D Flowers in p5.js: 2/2 - YouTube, 檢索日期：1月 31, 2026， https://www.youtube.com/watch?v=yOyU2gdurOc
+         20. Design Thinking Process for a Gamified Mobile App to Improve Migrants' Well-Being and Inclusion - SciTePress, 檢索日期：1月 31, 2026， https://www.scitepress.org/Papers/2025/133789/133789.pdf
+         21. HelloVisa! Designing an App to Help Migrants Do their Paperwork in a New Country | by Isabela Martins | Medium, 檢索日期：1月 31, 2026， https://medium.com/@isabelamrdepaula/hellovisa-designing-an-app-to-help-migrants-do-their-paperwork-in-a-new-country-c057493c1c9f
+         22. How to simplify the immigration application process — a UX case study, 檢索日期：1月 31, 2026， https://uxdesign.cc/how-to-simplify-the-immigration-application-process-a-ux-case-study-2c404a421be7
+         23. Gamification in Mindfulness Mobile Applications: The Effects of Rewards on Purchase Intention - DergiPark, 檢索日期：1月 31, 2026， https://dergipark.org.tr/tr/download/article-file/2575657
+         24. Immigration Support- A UX Case study | by Johnny Benavente - Medium, 檢索日期：1月 31, 2026， https://medium.com/@jbena005/immigration-support-a-ux-case-study-2e132e56c273
+         25. Browse immigration dashboard designs for inspiration - Dribbble, 檢索日期：1月 31, 2026， https://dribbble.com/search/immigration%20dashboard
+         26. Browse thousands of Immigration Visa images for design inspiration - Dribbble, 檢索日期：1月 31, 2026， https://dribbble.com/search/immigration-visa
+         27. The Psychology Behind App User Retention and What To Do About It | by Goji Labs, 檢索日期：1月 31, 2026， https://medium.com/@gojilabs/the-psychology-behind-app-user-retention-and-what-to-do-about-it-4906088c80a9
+         28. Procedural flowers - Showcase - three.js forum, 檢索日期：1月 31, 2026， https://discourse.threejs.org/t/procedural-flowers/22772
+         29. Procedural trees & flowers - Resources - three.js forum, 檢索日期：1月 31, 2026， https://discourse.threejs.org/t/procedural-trees-flowers/40797
+         30. Mesh.morphTargetInfluences – three.js docs, 檢索日期：1月 31, 2026， https://threejs.org/docs/#api/en/objects/Mesh.morphTargetInfluences
+         31. A three.js custom shader example - GitHub Gist, 檢索日期：1月 31, 2026， https://gist.github.com/8e4b4909de6525610055fc83add16b7b
+         32. [solved] How to morph to a target - Questions - three.js forum, 檢索日期：1月 31, 2026， https://discourse.threejs.org/t/solved-how-to-morph-to-a-target/3149
+         33. How to use bloom effect not for all object in scene? - Questions - three.js forum, 檢索日期：1月 31, 2026， https://discourse.threejs.org/t/how-to-use-bloom-effect-not-for-all-object-in-scene/24244
+         34. Headspace Case Study: The Impact of Gamification on Retention and Engagement - Trophy, 檢索日期：1月 31, 2026， https://trophy.so/blog/headspace-gamification-case-study
+         35. Prompt design strategies | Gemini API | Google AI for Developers, 檢索日期：1月 31, 2026， https://ai.google.dev/gemini-api/docs/prompting-strategies
+         36. Building a Real-Time AI Chatbot with React and Gemini (Google AI) | by Vaibhav Thakur, 檢索日期：1月 31, 2026， https://medium.com/@vaibhav11t/building-a-real-time-ai-chatbot-with-react-and-gemini-google-ai-5ed2c97358fa
+         37. p5.js Coding Tutorial | Chladni Patterns - YouTube, 檢索日期：1月 31, 2026， https://www.youtube.com/watch?v=J-siGcsK2k8
+         38. Aesthetic and Memorable Dashboard UI Design Ideas - Medium, 檢索日期：1月 31, 2026， https://medium.com/@theymakedesign/best-website-dashboard-ui-examples-for-design-inspiration-31-5db21df04cbd
+         39. Is Merit-dedication Allowed in Pristine Pure Land Buddhism? - Buddhistdoor Global, 檢索日期：1月 31, 2026， https://www.buddhistdoor.net/features/is-merit-dedication-allowed-in-pristine-pure-land-buddhism/
+         40. How to properly dedicate merit towards rebirth in the Pureland? - Reddit, 檢索日期：1月 31, 2026， https://www.reddit.com/r/PureLand/comments/ggxohz/how_to_properly_dedicate_merit_towards_rebirth_in/
+         41. Animating Shaders in React-Three- Fiber with React-Spring | by 0x88 - Medium, 檢索日期：1月 31, 2026， https://medium.com/@0x88a/animating-shaders-in-react-three-fiber-with-react-spring-4f7895d29222

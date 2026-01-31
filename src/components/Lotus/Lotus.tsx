@@ -23,7 +23,7 @@ export const Lotus = ({ meritCount, isChanting }: LotusProps) => {
         : stage === 'pureland' ? 1 : 0;
 
     return (
-        <group position={[0, 0, 0]}>
+        <group position={[0, -2, 0]}>
             {/* 底部動態螺旋光暈 - 從階段 2 開始顯現 */}
             {meritCount >= 50 && <SpiralAura meritCount={meritCount} />}
 
@@ -55,7 +55,7 @@ export const Lotus = ({ meritCount, isChanting }: LotusProps) => {
             {stage === 'avatar' && (
                 <>
                     <RadiantLotus meritCount={meritCount} isChanting={isChanting} />
-                    <SeatedFigure opacity={avatarOpacity} />
+                    <SeatedFigure opacity={avatarOpacity} meritCount={meritCount} />
                 </>
             )}
 
@@ -63,7 +63,7 @@ export const Lotus = ({ meritCount, isChanting }: LotusProps) => {
             {stage === 'pureland' && (
                 <>
                     <RadiantLotus meritCount={meritCount} isChanting={isChanting} />
-                    <SeatedFigure opacity={1} isEnlightened={true} />
+                    <SeatedFigure opacity={1} isEnlightened={true} meritCount={meritCount} />
                 </>
             )}
         </group>

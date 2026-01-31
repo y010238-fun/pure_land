@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 export const EntanglementParticles = ({ startPos, endPos, strength }: { startPos: THREE.Vector3, endPos: THREE.Vector3, strength: number }) => {
-    const count = 200;
+    const count = 800;
     const meshRef = useRef<THREE.InstancedMesh>(null!);
     const dummy = useMemo(() => new THREE.Object3D(), []);
 
@@ -46,8 +46,8 @@ export const EntanglementParticles = ({ startPos, endPos, strength }: { startPos
 
             dummy.position.copy(currentPos);
 
-            // Scale based on flow
-            const s = Math.sin(particle.t * Math.PI) * 0.1;
+            // Scale based on flow - 粒子更小
+            const s = Math.sin(particle.t * Math.PI) * 0.05;
             dummy.scale.setScalar(s);
 
             dummy.updateMatrix();

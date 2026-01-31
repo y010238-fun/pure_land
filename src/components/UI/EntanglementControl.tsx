@@ -12,7 +12,7 @@ export const EntanglementControl = ({ strength, onInteractStart, onInteractEnd }
 
     useEffect(() => {
         if (strength > 0.8) setText("阿彌陀佛，去此不遠");
-        else if (strength > 0.3) setText("建立量子連結中...");
+        else if (strength > 0.3) setText("量子糾纏中...");
         else setText("距離：十萬億佛土");
     }, [strength]);
 

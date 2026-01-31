@@ -10,9 +10,15 @@ import { EntanglementControl } from '../UI/EntanglementControl';
 export const QuantumBridgeScene = ({ onComplete }: { onComplete: () => void }) => {
     const [strength, setStrength] = useState(0);
     const [isPressing, setIsPressing] = useState(false);
+    const [isResonating, setIsResonating] = useState(false);
+
+    // 使用 ref 來追蹤是否已經啟動計時器（避免狀態更新的 race condition）
+    const hasStartedResonance = useRef(false);
 
     // Audio placeholders
     const audioContextRef = useRef<AudioContext | null>(null);
+
+    console.log('QuantumBridgeScene render, strength:', strength, 'isResonating:', isResonating);
 
     // Interaction Logic
     useEffect(() => {
@@ -23,6 +29,7 @@ export const QuantumBridgeScene = ({ onComplete }: { onComplete: () => void }) =
                     const newValue = prev + 0.005;
                     if (newValue >= 1) {
                         clearInterval(interval);
+                        console.log('Strength reached 1');
                         return 1;
                     }
                     return newValue;
@@ -37,10 +44,26 @@ export const QuantumBridgeScene = ({ onComplete }: { onComplete: () => void }) =
         return () => clearInterval(interval);
     }, [isPressing]);
 
-    // 當 strength 達到 1 時調用 onComplete (避免在 setState 期間調用)
+    // 當 strength 達到 1 時啟動 1 秒共振畫面
     useEffect(() => {
-        if (strength >= 1) {
-            onComplete();
+        console.log('Effect triggered, strength:', strength, 'isResonating:', isResonating, 'hasStartedResonance:', hasStartedResonance.current);
+
+        // 使用 ref 來檢查，避免 state 異步更新的問題
+        if (strength >= 1 && !hasStartedResonance.current) {
+            console.log('Starting resonance timer');
+            hasStartedResonance.current = true;
+            setIsResonating(true);
+
+            // 1 秒後才調用 onComplete
+            const resonanceTimer = setTimeout(() => {
+                console.log('Resonance complete, calling onComplete');
+                onComplete();
+            }, 1000);
+
+            return () => {
+                console.log('Cleaning up resonance timer');
+                clearTimeout(resonanceTimer);
+            };
         }
     }, [strength, onComplete]);
 

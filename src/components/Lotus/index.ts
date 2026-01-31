@@ -6,4 +6,5 @@ export { BloomingLotus } from './BloomingLotus';
 export { RadiantLotus } from './RadiantLotus';
 export { SeatedFigure } from './SeatedFigure';
 export { SoftGlow } from './SoftGlow';
+export { SpiralAura } from './SpiralAura';
 export { PetalShaderMaterial } from './shaders/petalShader';

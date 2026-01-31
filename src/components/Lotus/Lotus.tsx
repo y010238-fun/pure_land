@@ -4,6 +4,7 @@ import { LotusBud } from './LotusBud';
 import { BloomingLotus } from './BloomingLotus';
 import { RadiantLotus } from './RadiantLotus';
 import { SeatedFigure } from './SeatedFigure';
+import { SpiralAura } from './SpiralAura';
 
 interface LotusProps {
     meritCount: number;
@@ -17,6 +18,9 @@ export const Lotus = ({ meritCount, isChanting }: LotusProps) => {
 
     return (
         <group position={[0, 0, 0]}>
+            {/* 底部動態螺旋光暈 - 貫穿所有階段 (根據 merit 顯現) */}
+            <SpiralAura meritCount={meritCount} />
+
             {stage === 'seed' && <SeedParticles meritCount={meritCount} />}
             {stage === 'bud' && <LotusBud meritCount={meritCount} />}
             {stage === 'bloom' && <BloomingLotus meritCount={meritCount} />}

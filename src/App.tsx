@@ -4,6 +4,7 @@ import { OrbitControls, Stars, Text, Float, Trail, Sparkles, Html } from '@react
 import * as THREE from 'three';
 import { Fingerprint, Globe, MessageCircle, CreditCard, Activity, Sparkles as SparkleIcon, ArrowRight, Check } from 'lucide-react';
 import { QuantumBridgeScene } from './components/QuantumBridge/QuantumBridgeScene';
+import { WarpTunnelScene } from './components/Effects/WarpTunnelScene';
 
 // --- 3D 組件: 程式化蓮花 (Procedural Lotus) ---
 // 根據文件 4.1 數學模型：theta = n * 137.5, r = c * sqrt(n)
@@ -358,7 +359,7 @@ const AIChatOverlay = ({ visible, onClose }: { visible: boolean; onClose: () => 
 
 // --- 主應用程序 (App) ---
 export default function App() {
-  const [viewState, setViewState] = useState('BRIDGE'); // BRIDGE -> KYC -> POOL
+  const [viewState, setViewState] = useState('BRIDGE'); // BRIDGE -> KYC -> WARP -> POOL
   const [merit, setMerit] = useState(0);
   const [isChanting, setIsChanting] = useState(false);
   const [showVisa, setShowVisa] = useState(false);
@@ -389,15 +390,36 @@ export default function App() {
         </Canvas>
       )}
 
-      {/* 量子之橋入口 (獨立 Canvas) */}
+      {/* 3. 時光隧道轉場 (WARP 狀態) */}
+      {viewState === 'WARP' && (
+        <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+          <WarpTunnelScene onComplete={() => {
+            setViewState('POOL');
+            setShowVisa(false); // Hide Visa modal if still open
+            // Small delay to show Visa animation? No, just transition.
+          }} />
+        </Canvas>
+      )}
+
+      {/* 1. 量子之橋入口 (BRIDGE 狀態) */}
       {viewState === 'BRIDGE' && (
         <QuantumBridgeScene onComplete={() => setViewState('KYC')} />
       )}
 
+
       {viewState === 'KYC' && (
         <KYCView onComplete={() => {
-          setViewState('POOL');
+          // Keep KYC view state but show Visa modal
+          // Logic adjusted: After Visa signed -> WARP
           setShowVisa(true);
+        }} />
+      )}
+
+      {/* Visa Modal should be visible during KYC when showVisa is true */}
+      {viewState === 'KYC' && showVisa && (
+        <VisaModal onClose={() => {
+          setShowVisa(false);
+          setViewState('WARP');
         }} />
       )}
 
@@ -408,7 +430,6 @@ export default function App() {
             onChant={handleChant}
             onToggleChat={() => setShowChat(!showChat)}
           />
-          {showVisa && <VisaModal onClose={() => setShowVisa(false)} />}
           <AIChatOverlay visible={showChat} onClose={() => setShowChat(false)} />
         </>
       )}

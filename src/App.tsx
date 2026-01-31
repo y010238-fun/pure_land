@@ -106,14 +106,18 @@ const Lotus = ({ meritCount, isChanting }: { meritCount: number; isChanting: boo
   const groupRef = useRef<THREE.Group>(null!);
   const petalGeometry = useMemo(() => createPetalGeometry(), []);
 
-  // 計算開放程度 (0-1)，基於功德數 - 調整為更快達到滿開
-  const bloomLevel = useMemo(() => Math.min(meritCount / 50, 1), [meritCount]);
+  // 計算開放程度 (0-1)，現在調整為 0-1000 逐漸綻放
+  const bloomLevel = useMemo(() => Math.min(meritCount / 1000, 1), [meritCount]);
+
+  // 計算額外的成長比率 (功德越高，蓮花越大，但不封頂，使用對數生長)
+  const growthScale = useMemo(() => 1 + Math.log10(meritCount / 50 + 1) * 0.5, [meritCount]);
 
   // 動態呼吸效果
   useFrame(({ clock }) => {
     if (groupRef.current) {
       const breathe = isChanting ? Math.sin(clock.getElapsedTime() * 3) * 0.02 : 0;
-      groupRef.current.scale.setScalar(1 + breathe);
+      // 組合：基礎 2.5倍 * 生長比率 * 呼吸
+      groupRef.current.scale.setScalar(2.5 * growthScale * (1 + breathe));
       groupRef.current.rotation.y = clock.getElapsedTime() * 0.1;
     }
   });
@@ -123,16 +127,30 @@ const Lotus = ({ meritCount, isChanting }: { meritCount: number; isChanting: boo
     const result: React.ReactElement[] = [];
     let petalIndex = 0;
 
-    PETAL_LAYERS.forEach((layer, layerIndex) => {
-      // 根據 bloomLevel 決定每層要顯示多少花瓣
-      const visibleCount = Math.ceil(layer.count * Math.max(0.3, bloomLevel));
+    // 增加第五層：只有功德較高時才顯現
+    const layers = [...PETAL_LAYERS];
+    if (meritCount > 200) {
+      layers.push({
+        count: 24,
+        baseAngle: 1.45,
+        radius: 1.0,
+        scale: 1.3,
+        yOffset: -0.15,
+        color: '#ff758f' // 更深的顏色
+      });
+    }
+
+    layers.forEach((layer, layerIndex) => {
+      // 根據功德與層次決定花瓣數量
+      // 讓內層先長出來，外層隨功德增加
+      const layerActivation = Math.max(0, Math.min(1, (meritCount - (layerIndex * 50)) / 100));
+      const visibleCount = Math.ceil(layer.count * Math.max(0.2, layerActivation));
 
       for (let i = 0; i < visibleCount; i++) {
-        const angle = (i / layer.count) * Math.PI * 2 + layerIndex * 0.15; // 錯開排列
-        // 開放角度：內層較直立，外層更展開；高功德時完全綻放
+        const angle = (i / layer.count) * Math.PI * 2 + layerIndex * 0.15;
+        // 綻放角度：隨功德增加而張開
         const openAngle = layer.baseAngle * (0.4 + bloomLevel * 0.6);
 
-        // 使用層級的 radius 參數來定位花瓣
         const x = Math.sin(angle) * layer.radius;
         const z = Math.cos(angle) * layer.radius;
         const y = layer.yOffset;
@@ -151,10 +169,10 @@ const Lotus = ({ meritCount, isChanting }: { meritCount: number; isChanting: boo
     });
 
     return result;
-  }, [petalGeometry, bloomLevel]);
+  }, [petalGeometry, bloomLevel, meritCount]);
 
   return (
-    <group ref={groupRef} position={[0, 0, 0]} scale={[2.5, 2.5, 2.5]}>
+    <group ref={groupRef} position={[0, 0, 0]}>
       {petals}
       <Stamen />
     </group>
@@ -325,7 +343,7 @@ const VisaModal = ({ onClose }: { onClose: () => void }) => (
 );
 
 // 4. 主介面 (Main Dashboard)
-const Dashboard = ({ merit, onChant, onToggleChat }: { merit: number; onChant: () => void; onToggleChat: () => void }) => (
+const Dashboard = ({ merit, setMerit, onChant, onToggleChat }: { merit: number; setMerit: (val: number) => void; onChant: () => void; onToggleChat: () => void }) => (
   <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-6 z-10">
     {/* 頂部導航 */}
     <div className="flex justify-between items-start pointer-events-auto">
@@ -384,7 +402,12 @@ const Dashboard = ({ merit, onChant, onToggleChat }: { merit: number; onChant: (
       <div className="flex flex-col gap-2 items-end">
         <div className="bg-gray-900/80 backdrop-blur p-3 rounded-lg border border-gray-700 w-32">
           <div className="text-[10px] text-gray-500 uppercase mb-1">Total Merit</div>
-          <div className="text-xl text-white font-mono">{merit.toLocaleString()}</div>
+          <input
+            type="number"
+            value={merit}
+            onChange={(e) => setMerit(parseInt(e.target.value) || 0)}
+            className="bg-transparent border-none text-xl text-white font-mono w-full focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          />
         </div>
         <button className="p-3 bg-gray-900/80 backdrop-blur rounded-full border border-gray-700 text-gray-400 hover:text-white">
           <CreditCard size={20} />
@@ -520,6 +543,7 @@ export default function App() {
         <>
           <Dashboard
             merit={merit}
+            setMerit={setMerit}
             onChant={handleChant}
             onToggleChat={() => setShowChat(!showChat)}
           />

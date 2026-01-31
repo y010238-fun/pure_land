@@ -20,12 +20,12 @@ export const QuantumBridgeScene = ({ onComplete }: { onComplete: () => void }) =
         if (isPressing) {
             interval = setInterval(() => {
                 setStrength(prev => {
-                    if (prev >= 1) {
+                    const newValue = prev + 0.005;
+                    if (newValue >= 1) {
                         clearInterval(interval);
-                        onComplete();
                         return 1;
                     }
-                    return prev + 0.005; // increment speed
+                    return newValue;
                 });
             }, 16);
         } else {
@@ -35,7 +35,14 @@ export const QuantumBridgeScene = ({ onComplete }: { onComplete: () => void }) =
             }, 16);
         }
         return () => clearInterval(interval);
-    }, [isPressing, onComplete]);
+    }, [isPressing]);
+
+    // 當 strength 達到 1 時調用 onComplete (避免在 setState 期間調用)
+    useEffect(() => {
+        if (strength >= 1) {
+            onComplete();
+        }
+    }, [strength, onComplete]);
 
 
     return (

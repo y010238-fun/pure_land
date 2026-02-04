@@ -22,7 +22,7 @@ class Petal {
         this.p = p;
         this.x = p.random(p.width);
         this.y = p.random(-200, -50);
-        this.size = p.random(8, 20);
+        this.size = p.random(4, 12);
         this.rotation = p.random(p.TWO_PI);
         this.rotationSpeed = p.random(-0.03, 0.03);
         this.fallSpeed = p.random(0.5, 1.5);
@@ -64,13 +64,13 @@ class Petal {
         this.p.noStroke();
         this.p.fill(this.color);
 
-        // 繪製花瓣形狀
+        // 繪製花瓣形狀 (改為單片淚滴狀)
         this.p.beginShape();
         for (let i = 0; i < 100; i++) {
             const angle = this.p.map(i, 0, 100, 0, this.p.TWO_PI);
-            const r = this.size * (0.5 + 0.5 * this.p.sin(2 * angle)); // 花瓣形狀
-            const x = r * this.p.cos(angle);
-            const y = r * this.p.sin(angle) * 1.5; // 拉長成橢圓形
+            // 使用單片花瓣的參數方程：x = size * cos(t), y = size * sin(t) * (1 + 0.5 * sin(t))
+            const x = this.size * this.p.cos(angle);
+            const y = this.size * this.p.sin(angle) * (1 + 0.5 * this.p.sin(angle));
             this.p.vertex(x, y);
         }
         this.p.endShape(this.p.CLOSE);

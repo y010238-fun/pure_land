@@ -6,7 +6,10 @@ import { QuantumBridgeScene } from './components/QuantumBridge/QuantumBridgeScen
 import { WarpTunnelScene } from './components/Effects/WarpTunnelScene';
 import { SoftGlow } from './components/Lotus/SoftGlow';
 import { PureLandScene } from './components/Scenes/PureLandScene';
-import { LandingView, KYCView, VisaModal, Dashboard, AIChatOverlay } from './components/UI';
+import { LandingView, KYCView, VisaModal, Dashboard, AIChatOverlay, ParadiseVideoPlayer, SceneMenu } from './components/UI';
+import { TourScene } from './components/Scenes/TourScene';
+import { LeaderboardScene } from './components/Scenes/LeaderboardScene';
+import { ChatScene } from './components/Scenes/ChatScene';
 
 // 主應用程序
 export default function App() {
@@ -39,7 +42,7 @@ export default function App() {
       {viewState === 'WARP' && (
         <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
           <WarpTunnelScene onComplete={() => {
-            setViewState('POOL');
+            setViewState('PARADISE_VIDEO');
             setShowVisa(false);
           }} />
         </Canvas>
@@ -63,6 +66,14 @@ export default function App() {
         }} />
       )}
 
+      {viewState === 'PARADISE_VIDEO' && (
+        <ParadiseVideoPlayer onComplete={() => setViewState('SCENE_MENU')} />
+      )}
+
+      {viewState === 'SCENE_MENU' && (
+        <SceneMenu onSelectScene={(scene) => setViewState(scene)} />
+      )}
+
       {viewState === 'POOL' && (
         <>
           {/* p5.js 柔和光芒 (在 Canvas 外部) */}
@@ -76,6 +87,10 @@ export default function App() {
           <AIChatOverlay visible={showChat} onClose={() => setShowChat(false)} />
         </>
       )}
+
+      {viewState === 'TOUR' && <TourScene />}
+      {viewState === 'LEADERBOARD' && <LeaderboardScene />}
+      {viewState === 'CHAT' && <ChatScene />}
 
     </div>
   );

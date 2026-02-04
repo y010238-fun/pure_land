@@ -12,7 +12,7 @@ export type LotusStage =
     | 'pureland';  // 2500+: 圓滿淨土
 
 // 應用程式視圖狀態
-export type ViewState = 'BRIDGE' | 'KYC' | 'WARP' | 'POOL';
+export type ViewState = 'BRIDGE' | 'KYC' | 'WARP' | 'PARADISE_VIDEO' | 'SCENE_MENU' | 'POOL' | 'TOUR' | 'LEADERBOARD' | 'CHAT';
 
 // 階段判定函式
 export const getStage = (merit: number): LotusStage => {

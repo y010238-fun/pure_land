@@ -9,6 +9,19 @@ interface Props {
 
 export const EntanglementControl = ({ strength, onInteractStart, onInteractEnd }: Props) => {
     const [text, setText] = useState("距離：十萬億佛土");
+    const fullScripture = "從是西方，過十萬億佛土，有世界名曰極樂";
+    const [displayedScripture, setDisplayedScripture] = useState("");
+
+    useEffect(() => {
+        let i = 0;
+        setDisplayedScripture(""); // Reset
+        const timer = setInterval(() => {
+            setDisplayedScripture(fullScripture.slice(0, i + 1));
+            i++;
+            if (i >= fullScripture.length) clearInterval(timer);
+        }, 120);
+        return () => clearInterval(timer);
+    }, []);
 
     useEffect(() => {
         if (strength > 0.8) setText("阿彌陀佛，去此不遠");
@@ -18,14 +31,24 @@ export const EntanglementControl = ({ strength, onInteractStart, onInteractEnd }
 
     return (
         <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
-            <div className="mt-48 pointer-events-auto flex flex-col items-center gap-4">
+            <div className="mt-48 pointer-events-auto flex flex-col items-center gap-6">
+
+                {/* 頂部經文 - 打字機模式 */}
+                <div className="text-center min-h-[2.5rem] flex items-center justify-center">
+                    <h1 className="text-base md:text-lg font-serif text-transparent bg-clip-text 
+                                 bg-gradient-to-r from-[#FFF9E6] via-[#FFD700] to-[#FFF9E6] 
+                                 tracking-[0.25em] font-bold drop-shadow-[0_0_12px_rgba(255,215,0,0.4)]
+                                 animate-shine select-none whitespace-nowrap">
+                        {displayedScripture}
+                    </h1>
+                </div>
 
                 {/* Status Text with Glitch Effect placeholder */}
-                <h2 className={`text-xl font-serif tracking-widest transition-colors duration-500 ${strength > 0.8 ? 'text-yellow-400' : 'text-cyan-400'}`}>
+                <h2 className={`text-lg font-serif tracking-widest transition-colors duration-500 ${strength > 0.8 ? 'text-yellow-400' : 'text-cyan-400'}`}>
                     {text}
                 </h2>
 
-                <p className="text-xs text-gray-500 font-mono">
+                <p className="text-xs text-gray-500 font-mono mt-4">
                     {strength > 0 ? `QUANTUM SYNC: ${(strength * 100).toFixed(1)}%` : "WAITING FOR SIGNAL"}
                 </p>
 
@@ -69,6 +92,18 @@ export const EntanglementControl = ({ strength, onInteractStart, onInteractEnd }
                     長按以摺疊時空
                 </p>
             </div>
+
+            <style>{`
+                @keyframes shine {
+                    0% { background-position: -200% center; filter: drop-shadow(0 0 10px rgba(255,215,0,0.3)); }
+                    50% { filter: drop-shadow(0 0 20px rgba(255,215,0,0.6)); }
+                    100% { background-position: 200% center; filter: drop-shadow(0 0 10px rgba(255,215,0,0.3)); }
+                }
+                .animate-shine {
+                    background-size: 200% auto;
+                    animation: shine 8s linear infinite;
+                }
+            `}</style>
         </div>
     );
 };

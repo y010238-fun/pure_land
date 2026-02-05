@@ -5,18 +5,31 @@ interface DashboardProps {
     setMerit: (val: number) => void;
     onChant: () => void;
     onToggleChat: () => void;
+    onHome?: () => void;
 }
 
-export const Dashboard = ({ merit, setMerit, onChant, onToggleChat }: DashboardProps) => (
+export const Dashboard = ({ merit, setMerit, onChant, onToggleChat, onHome }: DashboardProps) => (
     <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-6 z-10">
         <div className="flex justify-between items-start pointer-events-auto">
-            <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gray-900/80 backdrop-blur rounded-lg border border-gray-700 flex items-center justify-center text-yellow-500">
-                    <Activity size={20} />
-                </div>
-                <div>
-                    <h1 className="text-white font-serif text-lg leading-none">個人蓮池</h1>
-                    <span className="text-xs text-gray-400">My Lotus Pool</span>
+            <div className="flex items-center gap-4">
+                {onHome && (
+                    <button
+                        onClick={onHome}
+                        className="p-2 bg-gray-900/80 backdrop-blur rounded-lg border border-gray-700 text-gray-400 hover:text-white transition-colors flex items-center gap-2 group"
+                        title="返回首頁"
+                    >
+                        <span className="text-lg group-hover:-translate-x-1 transition-transform">←</span>
+                        <span className="text-xs hidden md:inline">返回首頁</span>
+                    </button>
+                )}
+                <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gray-900/80 backdrop-blur rounded-lg border border-gray-700 flex items-center justify-center text-yellow-500">
+                        <Activity size={20} />
+                    </div>
+                    <div>
+                        <h1 className="text-white font-serif text-lg leading-none">個人蓮池</h1>
+                        <span className="text-xs text-gray-400">My Lotus Pool</span>
+                    </div>
                 </div>
             </div>
 

@@ -83,13 +83,14 @@ export default function App() {
             setMerit={setMerit}
             onChant={handleChant}
             onToggleChat={() => setShowChat(!showChat)}
+            onHome={() => setViewState('SCENE_MENU')}
           />
           <AIChatOverlay visible={showChat} onClose={() => setShowChat(false)} />
         </>
       )}
 
-      {viewState === 'TOUR' && <TourScene />}
-      {viewState === 'LEADERBOARD' && <LeaderboardScene />}
+      {viewState === 'TOUR' && <TourScene onBack={() => setViewState('SCENE_MENU')} />}
+      {viewState === 'LEADERBOARD' && <LeaderboardScene onBack={() => setViewState('SCENE_MENU')} />}
       {viewState === 'CHAT' && <ChatScene onBack={() => setViewState('SCENE_MENU')} />}
 
     </div>

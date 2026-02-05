@@ -38,6 +38,46 @@ export function initScene3D() {
 
     // 視窗縮放處理
     window.addEventListener('resize', onWindowResize, false);
+
+    // 點擊事件處理
+    window.addEventListener('mousedown', onDocumentMouseDown, false);
+    window.addEventListener('mousemove', onDocumentMouseMove, false);
+}
+
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+/**
+ * 處理鼠標懸停樣式
+ */
+function onDocumentMouseMove(event) {
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObject(buddhaPlane);
+
+    if (intersects.length > 0) {
+        document.body.style.cursor = 'pointer';
+    } else {
+        document.body.style.cursor = 'default';
+    }
+}
+
+/**
+ * 處理 3D 物件點擊
+ */
+function onDocumentMouseDown(event) {
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObject(buddhaPlane);
+
+    if (intersects.length > 0) {
+        // 觸發隱藏的文件上傳 Input
+        document.getElementById('image-upload').click();
+    }
 }
 
 /**

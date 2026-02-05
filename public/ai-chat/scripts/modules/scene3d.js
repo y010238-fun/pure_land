@@ -51,15 +51,20 @@ const mouse = new THREE.Vector2();
  * 處理鼠標懸停樣式
  */
 function onDocumentMouseMove(event) {
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    // 考慮到可能存在的彈窗或位移，使用 getBoundingClientRect 進行座標校準
+    const rect = renderer.domElement.getBoundingClientRect();
+    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
     raycaster.setFromCamera(mouse, camera);
     const intersects = raycaster.intersectObject(buddhaPlane);
 
     if (intersects.length > 0) {
+        renderer.domElement.style.cursor = 'pointer';
+        // 同步到 body 確保萬無一失
         document.body.style.cursor = 'pointer';
     } else {
+        renderer.domElement.style.cursor = 'default';
         document.body.style.cursor = 'default';
     }
 }
@@ -68,15 +73,17 @@ function onDocumentMouseMove(event) {
  * 處理 3D 物件點擊
  */
 function onDocumentMouseDown(event) {
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    const rect = renderer.domElement.getBoundingClientRect();
+    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
     raycaster.setFromCamera(mouse, camera);
     const intersects = raycaster.intersectObject(buddhaPlane);
 
     if (intersects.length > 0) {
         // 觸發隱藏的文件上傳 Input
-        document.getElementById('image-upload').click();
+        const fileInput = document.getElementById('image-upload');
+        if (fileInput) fileInput.click();
     }
 }
 

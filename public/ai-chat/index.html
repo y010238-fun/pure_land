@@ -61,8 +61,10 @@
             </div>
         </header>
 
-        <!-- 中間區域 (留白給佛像) -->
-        <div class="flex-grow"></div>
+        <!-- 中間區域 (留白給佛像) - 可點擊區域 -->
+        <div class="flex-grow pointer-events-auto cursor-pointer relative" id="buddha-zone"
+            onclick="document.getElementById('image-upload').click()" title="點擊上傳佛像">
+        </div>
 
         <!-- 底部聊天區域 -->
         <div class="w-full max-w-4xl mx-auto mb-6 px-4 pointer-events-auto flex flex-col gap-4">

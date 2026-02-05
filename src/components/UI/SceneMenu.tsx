@@ -57,7 +57,11 @@ export const SceneMenu = ({ onSelectScene }: SceneMenuProps) => {
             <div className="relative max-w-6xl w-full">
                 {/* 標題 */}
                 <div className="text-center mb-12 animate-fade-in">
-                    <h1 className="text-5xl font-bold text-white mb-4 font-serif">
+                    <h1 className="text-6xl md:text-7xl font-bold mb-6 font-serif tracking-[0.2em] 
+                               bg-[length:200%_auto] bg-gradient-to-r from-[#B8860B] via-[#FFFACD] to-[#B8860B] 
+                               bg-clip-text text-transparent
+                               filter drop-shadow-[0_0_25px_rgba(255,215,0,0.5)]
+                               animate-title-combined select-none">
                         西方極樂世界
                     </h1>
                     <p className="text-xl text-white/70">
@@ -144,6 +148,24 @@ export const SceneMenu = ({ onSelectScene }: SceneMenuProps) => {
             opacity: 1;
             transform: translateY(0);
           }
+        }
+
+        @keyframes shimmer {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+
+        @keyframes title-glow {
+          0%, 100% {
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
+          }
+          50% {
+            filter: drop-shadow(0 0 35px rgba(255, 215, 0, 0.7));
+          }
+        }
+
+        .animate-title-combined {
+          animation: shimmer 8s linear infinite, title-glow 4s ease-in-out infinite;
         }
 
         .animate-fade-in {

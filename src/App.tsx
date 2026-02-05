@@ -90,7 +90,7 @@ export default function App() {
 
       {viewState === 'TOUR' && <TourScene />}
       {viewState === 'LEADERBOARD' && <LeaderboardScene />}
-      {viewState === 'CHAT' && <ChatScene />}
+      {viewState === 'CHAT' && <ChatScene onBack={() => setViewState('SCENE_MENU')} />}
 
     </div>
   );

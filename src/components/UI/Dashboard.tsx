@@ -1,4 +1,5 @@
 import { MessageCircle, CreditCard, Activity } from 'lucide-react';
+import { TypewriterPoem } from './TypewriterPoem';
 
 interface DashboardProps {
     merit: number;
@@ -10,6 +11,11 @@ interface DashboardProps {
 
 export const Dashboard = ({ merit, setMerit, onChant, onToggleChat, onHome }: DashboardProps) => (
     <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-6 z-10">
+        {/* 左側詩詞 */}
+        <div className="absolute left-8 top-1/2 -translate-y-1/2 pointer-events-none">
+            <TypewriterPoem poem="此界一人念佛名，西方便有一蓮生；但使一生常不退，此花還到此間迎" />
+        </div>
+
         <div className="flex justify-between items-start pointer-events-auto">
             <div className="flex items-center gap-4">
                 {onHome && (

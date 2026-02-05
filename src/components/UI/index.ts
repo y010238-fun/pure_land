@@ -6,3 +6,4 @@ export { Dashboard } from './Dashboard';
 export { AIChatOverlay } from './AIChatOverlay';
 export { ParadiseVideoPlayer } from './ParadiseVideoPlayer';
 export { SceneMenu } from './SceneMenu';
+export { TypewriterPoem } from './TypewriterPoem';

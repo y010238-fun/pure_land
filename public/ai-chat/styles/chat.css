@@ -1,0 +1,53 @@
+/* ===========================
+   聊天區域樣式 - chat.css
+   訊息氣泡、輸入區、打字游標
+   =========================== */
+
+/* 聊天氣泡樣式 */
+.msg-user {
+    background: rgba(255, 255, 255, 0.1);
+    border-right: 2px solid #d4af37;
+}
+
+.msg-ai {
+    background: rgba(212, 175, 55, 0.15);
+    /* 淡金色 */
+    border-left: 2px solid #d4af37;
+}
+
+/* 打字機游標效果 */
+.typing-cursor::after {
+    content: '｜';
+    animation: blink 1s step-end infinite;
+    color: #d4af37;
+    font-weight: bold;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Markdown 樣式修正 */
+.markdown-content p {
+    margin-bottom: 0.5em;
+    line-height: 1.8;
+}
+
+.markdown-content strong {
+    color: #ffd700;
+    font-weight: 500;
+}
+
+.markdown-content ul {
+    list-style-type: disc;
+    padding-left: 1.5em;
+    margin-bottom: 0.5em;
+}

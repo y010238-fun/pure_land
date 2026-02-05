@@ -1,0 +1,53 @@
+/* ===========================
+   主要樣式 - main.css
+   全域樣式、字體、色彩、布局
+   =========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Serif TC', serif;
+    margin: 0;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    color: #e5e5e5;
+}
+
+/* 自定義捲軸 */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.5); /* 金色 */
+    border-radius: 3px;
+}
+
+/* 磨砂玻璃特效 */
+.glass-panel {
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 隱藏 Three.js canvas 的預設輪廓 */
+canvas {
+    display: block;
+    outline: none;
+}
+
+/* 喇叭開啟狀態 */
+.voice-active {
+    color: #fbbf24 !important; /* 金黃色 */
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+}

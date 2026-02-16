@@ -1,0 +1,135 @@
+極樂世界帝寶級賞屋 - Veo 3.1 Prompt (日系動畫風格)
+==================================================
+風格：2D+3D 日本動畫 / 新海誠風格 / 吉卜力風格 / 精緻動畫
+每個區域 2 個連續動畫（各 4 秒，共 8 秒）
+
+
+一、頂級 SPA 水療區（七寶池）
+----------------------------------------
+【動畫 1/2 - 全景推進】
+Prompt: Beautiful anime-style scene in Makoto Shinkai style, slowly pushing towards a magnificent seven-jewel pool in Buddhist pure land. Crystal clear water with ethereal blue glow, painted with detailed anime water reflections. Golden sand visible through stylized transparent water. Four-colored lotus flowers (cyan, yellow, red, white) bloom with soft glowing auras, rendered in vibrant 2D anime aesthetic. Seven-jewel pavilions in background with traditional East Asian architecture mixed with fantasy elements. Soft golden sunlight with dramatic god rays filtering through clouds. Cherry blossom petals floating in air. Rich saturated colors, detailed background art, emotional atmosphere, Studio Ghibli meets Shinkai visual style.
+
+【動畫 2/2 - 水面特寫】
+Prompt: Close-up anime shot of water surface with ripples, in detailed Japanese animation style. Giant anime-style lotus petals opening with glowing centers in rainbow colors. Water droplets create circular ripples with light reflections painted in cel-shading style. Soft bokeh background with blurred jewel pavilions. Magical particles floating above water. Vibrant color palette with emphasis on blues, golds, and pinks. Soft focus foreground, detailed water texture with anime aesthetic, peaceful and dreamy mood.
+
+
+二、純金地坪大廳（黃金地）
+----------------------------------------
+【動畫 1/2 - 地面漫步】
+Prompt: First-person perspective walking on infinite golden ground in anime style, inspired by Demon Slayer's ethereal scenes. Floor made of crystalline gold with anime-style light reflections and sparkles. Surface has subtle animated patterns like flowing light. Distant horizon with painted clouds in soft pastel colors. Golden particles floating upward with trailing light effects. Wide angle lens with slight anime distortion, smooth camera movement, vibrant golden color grading, magical atmosphere with detailed background art.
+
+【動畫 2/2 - 天女散花】
+Prompt: Low angle anime shot looking up at celestial beings in flowing traditional robes, designed in classic Japanese animation style. They scatter mandala flowers that drift down like snow, petals glowing with soft pink and white light with anime sparkles. Flowers transform into golden light particles. Background shows layers of beautifully painted clouds with golden edges. Cherry blossoms and light particles fill the air. Soft pastel color palette, magical girl anime aesthetic, heavenly beauty, emotional and serene.
+
+
+三、皇家景觀植栽區（七重行樹）
+----------------------------------------
+【動畫 1/2 - 樹林穿梭】
+Prompt: Camera moving through seven rows of jewel trees in anime style, reminiscent of Princess Mononoke's forest scenes. Trees with golden trunks and silver leaves, painted with detailed anime foliage. Gentle breeze makes leaves shimmer with animated light effects. Sunlight filters through multi-colored leaves creating dappled light patterns on ground in cel-shading style. Path lined with blooming fantasy flowers. Vibrant greens, golds, and blues, detailed nature background art, peaceful forest atmosphere with magical elements.
+
+【動畫 2/2 - 樹葉特寫】
+Prompt: Extreme close-up of jewel tree leaves swaying, rendered in detailed anime style. Golden and silver leaves with translucent anime quality, showing stylized vein patterns that glow. As leaves touch, they emit soft musical notes visualized as golden anime light streaks. Background shows painted layers of jewel trees with soft focus. Macro anime photography style, luminous leaf textures with cel-shading, peaceful meditative mood with magical particle effects.
+
+
+四、精品等級安全圍籬（七重欄楯）
+----------------------------------------
+【動畫 1/2 - 欄杆巡禮】
+Prompt: Elegant camera movement along seven layers of jewel railings in anime architectural style. Railings crafted from gold, silver, lapis lazuli with intricate Buddhist patterns drawn in detailed line art. Each layer has different jewel composition creating rainbow light effects with anime sparkles. Background reveals painted golden ground and distant fantasy pavilions. Architectural visualization with anime aesthetic, golden hour lighting with dramatic shadows, detailed ornamental designs, sacred geometry in 2D art style.
+
+【動畫 2/2 - 寶石特寫】
+Prompt: Close-up tracking shot along railing surface showing embedded gems in anime style. Rubies, sapphires, emeralds, diamonds drawn with vibrant anime colors and light reflections. Gems reflect surrounding scenery like miniature mirrors with painted backgrounds. Light refracts through crystal sections creating rainbow anime light beams. Macro photography style with anime aesthetic, sparkling gem textures with cel-shading, luxurious details, magical glow effects.
+
+
+五、空中寶石天幕（七重羅網）
+----------------------------------------
+【動畫 1/2 - 仰望天幕】
+Prompt: Low angle shot looking up at seven layers of jewel nets in anime sky style. Nets woven from gold, silver, pearls creating intricate geometric patterns drawn with clean anime lines. Sunlight filters through layers creating cascading light effects with god rays. Gems sparkle like anime stars with twinkle effects. Gentle breeze makes nets sway gracefully. Beautifully painted sky with soft gradient colors, dramatic lighting, celestial beauty in Japanese animation style.
+
+【動畫 2/2 - 網格細節】
+Prompt: Close-up of jewel net intersection in detailed anime style. Gems woven into golden threads drawn with precise line art. Each node holds a glowing pearl or crystal with anime light effects. As wind moves the net, gems catch light creating dancing rainbow patterns on painted clouds. Abstract beauty with anime aesthetic, light refraction effects drawn in cel-shading, intricate craftsmanship, divine artistry with magical particles.
+
+
+六、VIP 大師講座廳（講堂）
+----------------------------------------
+【動畫 1/2 - 講堂全景】
+Prompt: Majestic wide shot of seven-jewel lecture hall in epic anime style, inspired by Demon Slayer's temple scenes. Grand hall with golden pillars, silver beams, lapis lazuli walls drawn with detailed architectural line art. Amitabha Buddha seated on lotus throne emitting golden anime light rays. Countless bodhisattvas seated in rows with gentle auras drawn in soft colors. Hall ceiling opens to beautifully painted starry sky. Epic scale composition, dramatic divine lighting, architectural grandeur with Japanese fantasy aesthetic.
+
+【動畫 2/2 - 法會特寫】
+Prompt: Medium shot focusing on Buddha's hand gesture in anime style, emitting rays of golden light reaching listeners. Audience of enlightened beings with peaceful expressions drawn in detailed anime character design. Lotus flowers blooming above heads with glowing effects. Golden lotus petals floating with anime sparkles. Soft golden dust particles dancing in light beams. Warm lighting with emotional depth, spiritual transformation scene, detailed character art, sacred atmosphere.
+
+
+七、訂製化智慧宅邸（樓觀宮殿）
+----------------------------------------
+【動畫 1/2 - 宮殿變幻】
+Prompt: Time-lapse style palace transformation in magical anime style. Palace morphs gracefully from golden to silver to lapis lazuli, drawn with smooth anime transitions. Shape shifts between traditional East Asian, Tibetan, and fantasy styles while maintaining jewel quality. Pearls and moonstones weave through structure as animated light streams. Surrounding gardens change with magical particle effects. Smooth morphing animation, architectural visualization with anime aesthetic, wish-fulfillment theme with sparkles.
+
+【動畫 2/2 - 內部一瞥】
+Prompt: Camera gliding through palace interior in anime style. Walls made of transparent crystal revealing outer scenery painted in beautiful background art. Furniture materializes from golden light with magical anime effects. Ceiling is dome of interconnected jewels creating starry night effect with anime sparkles. Windows frame perfect views of pool and gardens in painted style. Interior design with Japanese fantasy aesthetic, ambient lighting, spacious elegance, divine comfort with soft colors.
+
+
+八、生態法音園區（眾鳥說法）
+----------------------------------------
+【動畫 1/2 - 群鳥飛翔】
+Prompt: Wide shot of magnificent birds flying in anime style, inspired by Studio Ghibli's flying scenes. White cranes with golden crests, peacocks with jewel-like tail feathers, parrots with rainbow plumage, celestial songbirds with glowing auras. Birds leave trails of golden light with anime motion lines. They circle around jewel trees and pool creating harmonious patterns. Background shows painted layers of golden clouds and distant fantasy palaces. Freedom and beauty with Japanese animation aesthetic, aerial cinematography, majestic flight with sparkles.
+
+【動畫 2/2 - 說法特寫】
+Prompt: Close-up of celestial songbird perched on jewel branch in anime wildlife style. As it sings, beak emits visible golden sound waves transforming into Buddhist symbols and lotus flowers floating in air. Bird's feathers shimmer with rainbow colors drawn in detailed anime style. Other birds gather around listening. Background softly blurred with painted pure land scenery. Macro wildlife photography with anime aesthetic, sound visualization with light effects, spiritual communication, magical realism.
+
+
+九、全天候心靈饗宴區（天樂區）
+----------------------------------------
+【動畫 1/2 - 音樂可視化】
+Prompt: Abstract visualization of heavenly music in anime style. Golden light waves and geometric patterns flow through air like liquid light, drawn with smooth anime motion. Music notes transform into blooming lotus flowers, mandala patterns, sacred symbols with magical effects. Background shows celestial orchestra of light beings in painted style. Colors shift from gold to rainbow spectrum in rhythm. Synesthetic experience with Japanese animation aesthetic, light painting, audio visualization, transcendent beauty with sparkles.
+
+【動畫 2/2 - 散花慶典】
+Prompt: Slow motion shot of mandala flowers falling in anime style. Flowers glow with soft pink, white, golden light, some transforming into light particles mid-air with anime sparkle effects. Celestial maidens visible in beautifully painted clouds above, gracefully scattering flowers. Flowers accumulate on golden ground creating beautiful patterns. Atmosphere is pure joy and celebration with magical girl anime aesthetic. Soft focus background, particle effects, dreamy atmosphere, heavenly celebration.
+
+
+==================================================
+風格關鍵詞參考
+==================================================
+主要風格：
+- Anime style / Japanese animation
+- Makoto Shinkai style (新海誠風格)
+- Studio Ghibli style (吉卜力風格)
+- Demon Slayer aesthetic (鬼滅之刃美學)
+- Cel-shading / 2D+3D hybrid
+
+視覺特點：
+- Vibrant saturated colors (飽和色彩)
+- Detailed background art (精緻背景)
+- God rays / dramatic lighting (戲劇性光線)
+- Anime sparkles and light effects (動畫光效)
+- Soft bokeh and depth of field (景深效果)
+- Painted cloudscapes (手繪雲彩)
+- Magical particle effects (魔法粒子)
+- Emotional atmosphere (情感氛圍)
+
+色彩調性：
+- Rich golds and warm tones (溫暖金色)
+- Vibrant jewel tones (鮮豔寶石色)
+- Soft pastel skies (柔和天空)
+- Cherry blossom pinks (櫻花粉)
+- Ethereal blues (空靈藍色)
+
+==================================================
+檔案命名建議
+==================================================
+1. seven_jewel_pool_anime_01.mp4 (全景推進)
+2. seven_jewel_pool_anime_02.mp4 (水面特寫)
+3. golden_ground_anime_01.mp4 (地面漫步)
+4. golden_ground_anime_02.mp4 (天女散花)
+5. seven_rows_trees_anime_01.mp4 (樹林穿梭)
+6. seven_rows_trees_anime_02.mp4 (樹葉特寫)
+7. seven_rows_railings_anime_01.mp4 (欄杆巡禮)
+8. seven_rows_railings_anime_02.mp4 (寶石特寫)
+9. seven_rows_nets_anime_01.mp4 (仰望天幕)
+10. seven_rows_nets_anime_02.mp4 (網格細節)
+11. lecture_hall_anime_01.mp4 (講堂全景)
+12. lecture_hall_anime_02.mp4 (法會特寫)
+13. palaces_anime_01.mp4 (宮殿變幻)
+14. palaces_anime_02.mp4 (內部一瞥)
+15. birds_teaching_anime_01.mp4 (群鳥飛翔)
+16. birds_teaching_anime_02.mp4 (說法特寫)
+17. heavenly_music_anime_01.mp4 (音樂可視化)
+18. heavenly_music_anime_02.mp4 (散花慶典)

@@ -1,0 +1,117 @@
+極樂世界帝寶級賞屋 - Veo 3.1 Prompt 生成指南
+==================================================
+每個區域 2 個連續動畫（各 4 秒，共 8 秒）
+
+
+一、頂級 SPA 水療區（七寶池）
+----------------------------------------
+【動畫 1/2 - 全景推進】
+Prompt: Cinematic wide shot slowly pushing forward towards a magnificent seven-jewel pool in Buddhist pure land paradise. Crystal clear water with eight miraculous virtues glows with ethereal blue light. Golden sand visible through transparent water. Four-colored lotus flowers (cyan, yellow, red, white) bloom around the pool, each emitting soft colored auras. Seven-jewel pavilions with golden, silver, lapis lazuli decorations in background. Serene, sacred atmosphere with gentle mist. Soft golden sunlight filtering through. 4K, photorealistic, majestic Buddhist architecture, tranquil water reflections.
+
+【動畫 2/2 - 水面特寫】
+Prompt: Close-up shot gliding over the surface of the eight-merit water pool. Water ripples create mesmerizing patterns with golden light reflections. Giant lotus petals opening slowly, revealing glowing centers in cyan, yellow, red, white colors. Water droplets falling create circular ripples with rainbow light effects. Subtle golden particles floating above water surface. Pure, meditative atmosphere. Macro photography style, shallow depth of field, luminous water texture, sacred Buddhist symbolism.
+
+
+二、純金地坪大廳（黃金地）
+----------------------------------------
+【動畫 1/2 - 地面漫步】
+Prompt: First-person perspective walking on infinite golden ground in Buddhist pure land. Floor made of pure crystalline gold, reflecting brilliant golden light with every step. Surface has subtle ripple patterns like liquid gold frozen in time. Distant horizon glows with warm golden hue. Soft heavenly music visualized as golden light waves in air. Elegant golden particles floating upward. Majestic, luxurious atmosphere. Wide angle lens, smooth camera movement, photorealistic gold texture, divine lighting.
+
+【動畫 2/2 - 天女散花】
+Prompt: Low angle shot looking up at celestial maidens in flowing silk robes floating gracefully in golden sky. They scatter mandala flowers that drift down like snow, petals glowing with soft pink and white light. Flowers transform into golden light particles as they touch the golden ground. Background shows layers of golden clouds and distant seven-jewel pavilions. Ethereal, dreamlike atmosphere. Slow motion effect, volumetric lighting, particle effects, heavenly beauty.
+
+
+三、皇家景觀植栽區（七重行樹）
+----------------------------------------
+【動畫 1/2 - 樹林穿梭】
+Prompt: Camera moving slowly through seven rows of magnificent jewel trees in Buddhist paradise. Trees with golden trunks and silver leaves, some with lapis lazuli bark and crystal foliage. Gentle breeze makes leaves chime like thousands of bells, visualized as golden sound waves. Sunlight filters through multi-colored leaves creating rainbow patterns on ground. Path lined with blooming jewel flowers. Serene, majestic forest atmosphere. Cinematic lighting, depth of field, photorealistic jewel textures.
+
+【動畫 2/2 - 樹葉特寫】
+Prompt: Extreme close-up of jewel tree leaves swaying in divine breeze. Golden and silver leaves with translucent quality, showing intricate vein patterns that glow with inner light. As leaves touch, they emit soft musical notes visualized as golden ripples in air. Background shows layers of jewel trees creating depth. Soft focus, macro photography, luminous leaf textures, peaceful meditative mood, gentle movement.
+
+
+四、精品等級安全圍籬（七重欄楯）
+----------------------------------------
+【動畫 1/2 - 欄杆巡禮】
+Prompt: Elegant camera movement along seven layers of jewel railings surrounding pure land paradise. Railings crafted from gold, silver, lapis lazuli, and crystal, with intricate Buddhist patterns and embedded gems. Each layer has different jewel composition, creating rainbow light effects. Camera glides smoothly showing perfect craftsmanship and sacred geometry. Background reveals glimpses of golden ground and distant pavilions. Architectural photography style, golden hour lighting, detailed jewel reflections.
+
+【動畫 2/2 - 寶石特寫】
+Prompt: Close-up tracking shot along railing surface showing embedded precious gems - rubies, sapphires, emeralds, diamonds - each glowing with inner light. Gems reflect surrounding pure land scenery like miniature mirrors. Light refracts through crystal sections creating rainbow prisms. Subtle golden aura surrounds the railing. Macro photography, shallow depth of field, sparkling gem textures, luxurious details, sacred atmosphere.
+
+
+五、空中寶石天幕（七重羅網）
+----------------------------------------
+【動畫 1/2 - 仰望天幕】
+Prompt: Low angle shot looking up at seven layers of jewel nets suspended in pure land sky. Nets woven from gold, silver, pearls, and precious gems, creating intricate geometric patterns. Sunlight filters through layers creating cascading light effects. Gems on nets sparkle like stars in daylight. Gentle breeze makes nets sway gracefully, producing soft chiming sounds visualized as light ripples. Heavenly, awe-inspiring atmosphere. Wide angle, dramatic lighting, celestial beauty.
+
+【動畫 2/2 - 網格細節】
+Prompt: Close-up of jewel net intersection showing how gems are woven into golden threads. Each node holds a glowing pearl or crystal that pulses with soft light. As wind moves the net, gems catch light and create dancing rainbow patterns on surrounding clouds. Background shows other layers of nets creating depth. Abstract beauty, macro photography, light refraction effects, intricate craftsmanship, divine artistry.
+
+
+六、VIP 大師講座廳（講堂）
+----------------------------------------
+【動畫 1/2 - 講堂全景】
+Prompt: Majestic wide shot of seven-jewel lecture hall in Buddhist pure land. Grand hall with golden pillars, silver beams, lapis lazuli walls, and crystal windows. Amitabha Buddha seated on lotus throne in center, emitting golden light. Countless bodhisattvas and celestial beings seated in perfect rows, all glowing with gentle aura. Hall ceiling opens to starry sky. Sacred, reverent atmosphere. Epic scale, cinematic composition, divine lighting, architectural grandeur.
+
+【動畫 2/2 - 法會特寫】
+Prompt: Medium shot focusing on Buddha's hand gesture (mudra) while teaching, emitting rays of golden light that reach each listener. Audience of enlightened beings shown with peaceful, joyful expressions, some with lotus flowers blooming above their heads representing awakening. Golden lotus petals floating in air. Soft golden dust particles dancing in light beams. Intimate yet sacred mood, warm lighting, emotional depth, spiritual transformation.
+
+
+七、訂製化智慧宅邸（樓觀宮殿）
+----------------------------------------
+【動畫 1/2 - 宮殿變幻】
+Prompt: Time-lapse style showing palace transforming according to wish. Palace structure morphs gracefully from golden to silver to lapis lazuli composition. Shape shifts from traditional Chinese to Tibetan to modern minimalist and back, all while maintaining seven-jewel material quality. Pearls and moonstones weave through structure like living light. Surrounding gardens change accordingly. Magical transformation sequence, smooth morphing effects, architectural visualization, wish-fulfillment theme.
+
+【動畫 2/2 - 內部一瞥】
+Prompt: Camera gliding through palace interior showing walls made of transparent crystal revealing outer pure land scenery. Furniture and decorations materialize from golden light as needed - meditation cushions, offering tables, scripture shelves. Ceiling is dome of interconnected jewels creating starry night effect. Windows frame perfect views of seven-jewel pool and gardens. Luxurious yet serene atmosphere. Interior design photography, ambient lighting, spacious elegance, divine comfort.
+
+
+八、生態法音園區（眾鳥說法）
+----------------------------------------
+【動畫 1/2 - 群鳥飛翔】
+Prompt: Wide shot of magnificent birds flying in formation across pure land sky - white cranes with golden crests, peacocks with jewel-like tail feathers, parrots with rainbow plumage, kalavinkas (celestial songbirds) with glowing auras. Birds leave trails of golden light as they fly. They circle around seven-jewel trees and pool, creating harmonious patterns. Background shows layers of golden clouds and distant palaces. Freedom, beauty, and sacred teaching atmosphere. Aerial cinematography, bird's eye view, majestic flight.
+
+【動畫 2/2 - 說法特寫】
+Prompt: Close-up of kalavinka celestial bird perched on jewel branch, singing Dharma teachings. As it sings, its beak emits visible golden sound waves that transform into ancient Buddhist symbols and lotus flowers floating in air. Bird's feathers shimmer with all colors of rainbow. Other birds gather around listening. Background softly blurred showing pure land scenery. Macro wildlife photography, magical realism, sound visualization, spiritual communication.
+
+
+九、全天候心靈饗宴區（天樂區）
+----------------------------------------
+【動畫 1/2 - 音樂可視化】
+Prompt: Abstract visualization of heavenly music in pure land. Golden light waves and geometric patterns flowing through air like liquid light. Music notes transforming into blooming lotus flowers, mandala patterns, and sacred symbols. Background shows celestial orchestra of light beings playing invisible instruments. Colors shift from gold to rainbow spectrum in rhythm. Ground is golden with floating flower petals. Synesthetic experience, light painting, audio visualization, transcendent beauty.
+
+【動畫 2/2 - 散花慶典】
+Prompt: Slow motion shot of mandala flowers falling from sky like gentle rain. Flowers glow with soft pink, white, and golden light, some transforming into light particles mid-air. Celestial maidens visible in clouds above, gracefully scattering flowers. Flowers accumulate on golden ground creating beautiful patterns. Atmosphere is pure joy and celebration. Soft focus background, particle effects, dreamy atmosphere, heavenly celebration, eternal bliss.
+
+
+==================================================
+Veo 3.1 生成建議
+==================================================
+1. 每個 prompt 生成 4 秒影片
+2. 兩個連續動畫可以拼接成 8 秒完整場景
+3. 建議使用 1080p 或 4K 解析度
+4. 風格：Photorealistic, Cinematic, Majestic
+5. 光線：Soft golden sunlight, Ethereal glow, Volumetric lighting
+6. 色調：Warm golds, Rainbow jewel tones, Pure whites
+
+==================================================
+檔案命名建議
+==================================================
+1. seven_jewel_pool_01.mp4 (全景推進)
+2. seven_jewel_pool_02.mp4 (水面特寫)
+3. golden_ground_01.mp4 (地面漫步)
+4. golden_ground_02.mp4 (天女散花)
+5. seven_rows_trees_01.mp4 (樹林穿梭)
+6. seven_rows_trees_02.mp4 (樹葉特寫)
+7. seven_rows_railings_01.mp4 (欄杆巡禮)
+8. seven_rows_railings_02.mp4 (寶石特寫)
+9. seven_rows_nets_01.mp4 (仰望天幕)
+10. seven_rows_nets_02.mp4 (網格細節)
+11. lecture_hall_01.mp4 (講堂全景)
+12. lecture_hall_02.mp4 (法會特寫)
+13. palaces_01.mp4 (宮殿變幻)
+14. palaces_02.mp4 (內部一瞥)
+15. birds_teaching_01.mp4 (群鳥飛翔)
+16. birds_teaching_02.mp4 (說法特寫)
+17. heavenly_music_01.mp4 (音樂可視化)
+18. heavenly_music_02.mp4 (散花慶典)

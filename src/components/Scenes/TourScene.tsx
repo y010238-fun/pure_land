@@ -80,10 +80,10 @@ export const TourScene = ({ onBack, initialRegion }: TourSceneProps) => {
                             style={{
                                 textShadow: '0 0 30px rgba(255, 200, 100, 0.3)',
                             }}>
-                            西方極樂世界導覽
+                            🏠 極樂世界帝寶級賞屋
                         </h1>
                         <p className="text-white/60 text-sm">
-                            根據淨土三經內容 · 探索極樂世界殊勝場景
+                            九大頂級設施 · 永久免費入住
                         </p>
                     </div>
 

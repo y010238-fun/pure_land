@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { TourRegion } from '../../types';
 
 interface TourPreviewProps {
@@ -7,6 +7,29 @@ interface TourPreviewProps {
 
 const TourPreview: React.FC<TourPreviewProps> = ({ region }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [displayedText, setDisplayedText] = useState('');
+    const [isTyping, setIsTyping] = useState(false);
+
+    // 打字機效果
+    useEffect(() => {
+        setDisplayedText('');
+        setIsTyping(true);
+        
+        const text = region.explanation;
+        let index = 0;
+        
+        const typeInterval = setInterval(() => {
+            if (index < text.length) {
+                setDisplayedText(text.slice(0, index + 1));
+                index++;
+            } else {
+                setIsTyping(false);
+                clearInterval(typeInterval);
+            }
+        }, 40); // 每 40ms 打一個字
+
+        return () => clearInterval(typeInterval);
+    }, [region]);
 
     // 影片自動播放
     useEffect(() => {
@@ -18,9 +41,9 @@ const TourPreview: React.FC<TourPreviewProps> = ({ region }) => {
     }, [region]);
 
     return (
-        <div className="flex gap-6 h-full">
+        <div className="flex gap-4 h-full">
             {/* 左側：影片預覽區 */}
-            <div className="flex-1 relative rounded-2xl overflow-hidden bg-black/30">
+            <div className="w-[55%] relative rounded-2xl overflow-hidden bg-black/30 flex-shrink-0">
                 <video
                     ref={videoRef}
                     src={region.videoUrl}
@@ -37,7 +60,7 @@ const TourPreview: React.FC<TourPreviewProps> = ({ region }) => {
                         {region.title}
                     </h3>
                     <p className="text-sm text-yellow-300/90">
-                        {region.source}
+                        📜 {region.source}
                     </p>
                 </div>
 
@@ -48,65 +71,74 @@ const TourPreview: React.FC<TourPreviewProps> = ({ region }) => {
                 </div>
             </div>
 
-            {/* 右側：經文說明區 */}
-            <div className="w-[380px] flex flex-col bg-gradient-to-b from-purple-900/30 to-indigo-900/30 rounded-2xl p-6 overflow-y-auto">
+            {/* 右側：打字機賞屋亮點介紹 */}
+            <div className="flex-1 flex flex-col bg-gradient-to-b from-purple-900/30 to-indigo-900/30 rounded-2xl p-5 overflow-hidden">
                 {/* 區域標題 */}
-                <div className="mb-6">
+                <div className="mb-3 flex-shrink-0">
                     <div className="flex items-center gap-2 mb-2">
-                        <span className="text-3xl">🏛️</span>
-                        <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">
+                        <span className="text-2xl">🏠</span>
+                        <h2 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">
                             {region.title}
                         </h2>
                     </div>
                     <div className="h-0.5 bg-gradient-to-r from-yellow-400/50 to-transparent" />
                 </div>
 
-                {/* 經典出處 */}
-                <div className="mb-4">
-                    <span className="inline-block bg-yellow-500/20 text-yellow-300 text-xs px-3 py-1 rounded-full">
-                        📜 {region.source}
+                {/* 賞屋亮點標籤 */}
+                <div className="mb-3 flex-shrink-0">
+                    <span className="inline-block bg-yellow-500/20 text-yellow-300 text-sm px-3 py-1 rounded-full font-medium">
+                        ✨ 賞屋亮點介紹
                     </span>
                 </div>
 
-                {/* 經文原文 */}
-                <div className="mb-6">
-                    <h4 className="text-sm font-medium text-yellow-400/80 mb-2 flex items-center gap-2">
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
-                        </svg>
-                        經文原文
-                    </h4>
+                {/* 打字機文字區域 */}
+                <div className="flex-1 overflow-y-auto min-h-0">
                     <div className="bg-black/20 rounded-xl p-4 border border-yellow-400/20">
-                        <p className="text-white/90 leading-relaxed text-sm font-medium italic">
-                            {region.scripture}
+                        <p className="text-white/90 leading-relaxed text-base whitespace-pre-wrap">
+                            {displayedText}
+                            {/* 打字游標 */}
+                            {isTyping && (
+                                <span className="inline-block w-0.5 h-4 bg-yellow-400 ml-0.5 animate-blink" />
+                            )}
                         </p>
                     </div>
                 </div>
 
-                {/* 白話說明 */}
-                <div>
-                    <h4 className="text-sm font-medium text-emerald-400/80 mb-2 flex items-center gap-2">
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                        </svg>
-                        白話說明
-                    </h4>
-                    <div className="bg-emerald-900/20 rounded-xl p-4 border border-emerald-400/20">
-                        <p className="text-white/80 leading-relaxed text-sm">
-                            {region.explanation}
-                        </p>
-                    </div>
+                {/* 經文原文（摺疊顯示） */}
+                <div className="mt-3 pt-3 border-t border-white/10 flex-shrink-0">
+                    <details className="group">
+                        <summary className="cursor-pointer text-xs text-yellow-400/70 hover:text-yellow-400 transition-colors flex items-center gap-1">
+                            <svg className="w-3 h-3 transform group-open:rotate-90 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                            查看經文原文
+                        </summary>
+                        <div className="mt-2 bg-black/20 rounded-lg p-2 text-white/60 text-xs leading-relaxed italic max-h-24 overflow-y-auto">
+                            {region.scripture}
+                        </div>
+                    </details>
                 </div>
 
                 {/* 裝飾性分隔線 */}
-                <div className="mt-auto pt-4">
+                <div className="mt-2 flex-shrink-0">
                     <div className="flex items-center justify-center gap-2 text-white/30">
-                        <div className="w-8 h-px bg-white/20" />
+                        <div className="w-6 h-px bg-white/20" />
                         <span className="text-xs">南無阿彌陀佛</span>
-                        <div className="w-8 h-px bg-white/20" />
+                        <div className="w-6 h-px bg-white/20" />
                     </div>
                 </div>
             </div>
+
+            {/* 打字游標動畫樣式 */}
+            <style>{`
+                @keyframes blink {
+                    0%, 50% { opacity: 1; }
+                    51%, 100% { opacity: 0; }
+                }
+                .animate-blink {
+                    animation: blink 0.8s infinite;
+                }
+            `}</style>
         </div>
     );
 };

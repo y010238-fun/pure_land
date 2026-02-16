@@ -6,8 +6,18 @@ import { SahaWorld } from './SahaWorld';
 import { PureLandWorld } from './PureLandWorld';
 import { EntanglementParticles } from './EntanglementParticles';
 import { EntanglementControl } from '../UI/EntanglementControl';
+import { detectWebGL } from '../../utils/webglDetector';
+import { QuantumBridgeFallback } from './QuantumBridgeFallback';
 
 export const QuantumBridgeScene = ({ onComplete }: { onComplete: () => void }) => {
+    // 檢測 WebGL 是否可用
+    const [hasWebGL] = useState(() => detectWebGL());
+
+    // 如果 WebGL 不可用,使用 CSS 降級版本
+    if (!hasWebGL) {
+        console.warn('WebGL not available, using CSS fallback');
+        return <QuantumBridgeFallback onComplete={onComplete} />;
+    }
     const [strength, setStrength] = useState(0);
     const [isPressing, setIsPressing] = useState(false);
     const [isResonating, setIsResonating] = useState(false);

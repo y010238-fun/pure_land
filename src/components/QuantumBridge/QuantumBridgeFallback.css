@@ -1,0 +1,369 @@
+/* 量子橋接場景 CSS 降級版本樣式 */
+
+.quantum-bridge-fallback {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to bottom, #000000, #0a0a1a, #000000);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 星空背景 */
+.stars-background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* 世界容器 */
+.world {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 2;
+  transition: transform 0.3s ease-out;
+}
+
+.saha-world {
+  left: 20%;
+}
+
+.pure-land-world {
+  right: 20%;
+}
+
+/* 星球 */
+.planet {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.planet-surface {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* 娑婆世界星球 */
+.saha-planet .planet-surface {
+  background: radial-gradient(circle at 30% 30%, #4a5568, #1a202c);
+  box-shadow: inset -10px -10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.saha-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(74, 85, 104, 0.3), transparent 70%);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* 極樂世界星球 */
+.pure-land-planet .planet-surface {
+  background: radial-gradient(circle at 30% 30%, #fbbf24, #f59e0b, #d97706);
+  box-shadow: inset -10px -10px 30px rgba(217, 119, 6, 0.5);
+}
+
+.pure-land-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.5), transparent 70%);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* 世界標籤 */
+.world-label {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  opacity: 0.8;
+}
+
+/* 量子糾纏粒子 */
+.entanglement-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  background: #60a5fa;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #60a5fa;
+  animation: particle-flow 2s linear infinite;
+}
+
+@keyframes particle-flow {
+  0% {
+    transform: translate(-200px, 0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(200px, 0) scale(1);
+    opacity: 0;
+  }
+}
+
+/* 共振效果 */
+.resonance-effect {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resonance-wave {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 3px solid rgba(96, 165, 250, 0.8);
+  border-radius: 50%;
+  animation: resonance-expand 1s ease-out infinite;
+}
+
+@keyframes resonance-expand {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  }
+}
+
+/* 控制面板 */
+.control-panel {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 500px;
+  width: 90%;
+}
+
+.title-section {
+  text-align: center;
+}
+
+.main-title {
+  font-size: 20px;
+  font-weight: bold;
+  background: linear-gradient(to right, #fbbf24, #f59e0b, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+}
+
+.distance-text {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+}
+
+.status-section {
+  text-align: center;
+}
+
+.status-label {
+  color: #60a5fa;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.progress-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #60a5fa, #3b82f6);
+  border-radius: 4px;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+}
+
+.progress-percentage {
+  color: #60a5fa;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.fold-button {
+  position: relative;
+  padding: 16px 32px;
+  background: rgba(96, 165, 250, 0.2);
+  border: 2px solid rgba(96, 165, 250, 0.5);
+  border-radius: 9999px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.fold-button:hover:not(:disabled) {
+  background: rgba(96, 165, 250, 0.3);
+  border-color: rgba(96, 165, 250, 0.8);
+  transform: scale(1.05);
+}
+
+.fold-button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.fold-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button-text {
+  position: relative;
+  z-index: 2;
+}
+
+.button-glow {
+  position: absolute;
+  inset: -2px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.3), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.fold-button:hover:not(:disabled) .button-glow {
+  opacity: 1;
+}
+
+.instruction-text {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  text-align: center;
+}
+
+/* WebGL 警告 */
+.webgl-warning {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 20;
+  padding: 8px 16px;
+  background: rgba(251, 191, 36, 0.2);
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  border-radius: 8px;
+  color: #fbbf24;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.warning-icon {
+  font-size: 16px;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .planet {
+    width: 100px;
+    height: 100px;
+  }
+
+  .saha-world {
+    left: 10%;
+  }
+
+  .pure-land-world {
+    right: 10%;
+  }
+
+  .main-title {
+    font-size: 16px;
+  }
+
+  .control-panel {
+    bottom: 20px;
+  }
+}

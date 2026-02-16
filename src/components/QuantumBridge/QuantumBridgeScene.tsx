@@ -44,10 +44,11 @@ export const QuantumBridgeScene = ({ onComplete }: { onComplete: () => void }) =
         return () => clearInterval(interval);
     }, [isPressing]);
 
+    // Timer ref to manage cleanup
+    const resonanceTimerRef = useRef<NodeJS.Timeout | null>(null);
+
     // 當 strength 達到 1 時啟動 1 秒共振畫面
     useEffect(() => {
-        console.log('Effect triggered, strength:', strength, 'isResonating:', isResonating, 'hasStartedResonance:', hasStartedResonance.current);
-
         // 使用 ref 來檢查，避免 state 異步更新的問題
         if (strength >= 1 && !hasStartedResonance.current) {
             console.log('Starting resonance timer');
@@ -55,17 +56,21 @@ export const QuantumBridgeScene = ({ onComplete }: { onComplete: () => void }) =
             setIsResonating(true);
 
             // 1 秒後才調用 onComplete
-            const resonanceTimer = setTimeout(() => {
+            resonanceTimerRef.current = setTimeout(() => {
                 console.log('Resonance complete, calling onComplete');
                 onComplete();
             }, 1000);
-
-            return () => {
-                console.log('Cleaning up resonance timer');
-                clearTimeout(resonanceTimer);
-            };
         }
     }, [strength, onComplete]);
+
+    // Cleanup on unmount
+    useEffect(() => {
+        return () => {
+            if (resonanceTimerRef.current) {
+                clearTimeout(resonanceTimerRef.current);
+            }
+        };
+    }, []);
 
 
     return (

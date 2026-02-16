@@ -11,8 +11,41 @@ export type LotusStage =
     | 'avatar'     // 2000-2499: 化身顯現
     | 'pureland';  // 2500+: 圓滿淨土
 
+// 導覽區域類型
+export type TourRegionId =
+    | 'seven_jewel_pool'   // 七寶池
+    | 'golden_ground'      // 黃金地
+    | 'seven_rows_trees'   // 七重行樹
+    | 'seven_rows_railings'// 七重欄楯
+    | 'seven_rows_nets'    // 七重羅網
+    | 'lecture_hall'       // 講堂
+    | 'palaces'            // 樓觀宮殿
+    | 'birds_teaching'     // 眾鳥說法
+    | 'heavenly_music';    // 天樂區
+
+// 導覽區域資料結構
+export interface TourRegion {
+    id: TourRegionId;
+    title: string;          // 區域名稱
+    videoUrl: string;       // Veo 影片路徑
+    thumbnailUrl: string;   // 縮圖路徑
+    source: string;         // 經典出處
+    scripture: string;      // 經文原文
+    explanation: string;    // 白話說明
+}
+
 // 應用程式視圖狀態
-export type ViewState = 'BRIDGE' | 'KYC' | 'WARP' | 'PARADISE_VIDEO' | 'SCENE_MENU' | 'POOL' | 'TOUR' | 'LEADERBOARD' | 'CHAT';
+export type ViewState = 
+    | 'BRIDGE' 
+    | 'KYC' 
+    | 'WARP' 
+    | 'PARADISE_VIDEO' 
+    | 'SCENE_MENU' 
+    | 'POOL' 
+    | 'TOUR' 
+    | 'TOUR_DETAIL'  // 導覽詳情頁
+    | 'LEADERBOARD' 
+    | 'CHAT';
 
 // 階段判定函式
 export const getStage = (merit: number): LotusStage => {

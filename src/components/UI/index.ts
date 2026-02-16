@@ -7,3 +7,6 @@ export { AIChatOverlay } from './AIChatOverlay';
 export { ParadiseVideoPlayer } from './ParadiseVideoPlayer';
 export { SceneMenu } from './SceneMenu';
 export { TypewriterPoem } from './TypewriterPoem';
+export { default as TourMenu } from './TourMenu';
+export { default as TourPreview } from './TourPreview';
+export { default as TourDetailView } from './TourDetailView';

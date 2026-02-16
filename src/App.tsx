@@ -10,10 +10,11 @@ import { LandingView, KYCView, VisaModal, Dashboard, AIChatOverlay, ParadiseVide
 import { TourScene } from './components/Scenes/TourScene';
 import { LeaderboardScene } from './components/Scenes/LeaderboardScene';
 import { ChatScene } from './components/Scenes/ChatScene';
+import { ViewState } from './types';
 
 // 主應用程序
 export default function App() {
-  const [viewState, setViewState] = useState('BRIDGE');
+  const [viewState, setViewState] = useState<ViewState>('BRIDGE');
   const [merit, setMerit] = useState(0);
   const [isChanting, setIsChanting] = useState(false);
   const [showVisa, setShowVisa] = useState(false);
@@ -71,7 +72,7 @@ export default function App() {
       )}
 
       {viewState === 'SCENE_MENU' && (
-        <SceneMenu onSelectScene={(scene) => setViewState(scene)} />
+        <SceneMenu onSelectScene={(scene) => setViewState(scene as ViewState)} />
       )}
 
       {viewState === 'POOL' && (
@@ -89,7 +90,10 @@ export default function App() {
         </>
       )}
 
-      {viewState === 'TOUR' && <TourScene onBack={() => setViewState('SCENE_MENU')} />}
+      {(viewState === 'TOUR' || viewState === 'TOUR_DETAIL') && (
+        <TourScene onBack={() => setViewState('SCENE_MENU')} />
+      )}
+      
       {viewState === 'LEADERBOARD' && <LeaderboardScene onBack={() => setViewState('SCENE_MENU')} />}
       {viewState === 'CHAT' && <ChatScene onBack={() => setViewState('SCENE_MENU')} />}
 
